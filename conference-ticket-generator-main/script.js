@@ -46,23 +46,35 @@ const email = document.getElementById("email")
 
 email.addEventListener("input", (e) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (emailRegex.test(email)) {
+    const emailValue = e.target.value
+    if (emailRegex.test(emailValue)) {
         console.log("Valid email");
     } else {
         console.log("Invalid email");
-        alert("wrong email")
-        email.innerHTML=""
+        //alert("wrong email")
+        email.value=""
     }
 })
 
 const git_id = document.getElementById("git_name")
+
 git_id.addEventListener("input",(e) => {
     const githubRegex = /^(?!-)(?!.*--)[a-zA-Z0-9-]{1,39}(?<!-)$/;
-    
-    if (githubRegex.test(git_id)) {
+    const gitValue = e.target.value
+
+    if (githubRegex.test(gitValue)) {
         console.log("Valid GitHub username");
+        fetch(`https://api.github.com/users/${gitValue}`)
+            .then(res => {
+                if (res.ok) {
+                console.log("GitHub user exists!");
+                } else {
+                console.log("GitHub user not found.");
+                }
+            });
     } 
     else {
         console.log("Invalid GitHub username");
+        git_id.value = "";
     }
 })
