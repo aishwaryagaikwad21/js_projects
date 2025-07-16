@@ -4,12 +4,13 @@ const avatar = document.getElementById("avatar");
 
 const profile = document.querySelector('#upload-icon');
 
+const name = document.getElementById("name")
+
 avatar.addEventListener("input",(e)=>{
     const file = e.target.files[0];
     console.log(file.size)
     const maxSize = 500*1024;
     const fileNameDisplay = document.getElementById("fileName");
-    fileNameDisplay.textContent = `${file.name}`
 
 
     if (file) {
@@ -49,10 +50,13 @@ email.addEventListener("input", (e) => {
     const emailValue = e.target.value
     if (emailRegex.test(emailValue)) {
         console.log("Valid email");
+        console.log(email.value)
+        email.style.borderBlockColor = 'green'
     } else {
         console.log("Invalid email");
+        email.style.borderBlockColor = 'red'
         //alert("wrong email")
-        email.value=""
+        //email.value=""
     }
 })
 
@@ -68,8 +72,11 @@ git_id.addEventListener("input",(e) => {
             .then(res => {
                 if (res.ok) {
                 console.log("GitHub user exists!");
+                console.log(git_id.value)
+                //git_id.style.borderBlockColor = 'green'
                 } else {
                 console.log("GitHub user not found.");
+                //git_id.style.borderBlockColor = 'red'
                 }
             });
     } 
@@ -78,3 +85,23 @@ git_id.addEventListener("input",(e) => {
         git_id.value = "";
     }
 })
+
+const formFinal = document.getElementById("myForm");
+
+formFinal.addEventListener("submit", function (e) {
+  e.preventDefault(); // prevent default form action
+  console.log(name)
+
+  //(Optional) Do your validation or localStorage saving here
+    localStorage.setItem("name", name.value);
+    localStorage.setItem("email",email.value)
+    localStorage.setItem("git_id",git_id.value)
+  // Redirect to a new page
+  window.location.href = "ticket.html";  // or any other HTML file
+});
+
+window.onload = function () {
+  document.getElementById("myForm").reset(); // Clears all fields
+}; 
+
+//also clearing data from localstorage on reloading
