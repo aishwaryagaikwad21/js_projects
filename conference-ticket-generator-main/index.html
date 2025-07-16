@@ -17,14 +17,15 @@
   <p>Secure your spot at next year's biggest coding conference</p>
 
   <main>
-    <form action="">
+    <form id = "myForm">
     
       <label>Upload Avatar</label><br>
       <div class="avatar">
         <label for="avatar" class="upload-icon">
           <img src="./assets/images/icon-upload.svg" alt="Upload Icon" />
         </label>
-        <input type="file" id="avatar" name="avatar" accept="image/jpg, image/png"required style="display: none;"/>
+        <input type="file" id="avatar" name="avatar" accept="image/jpeg, image/png"required style="display: none;"/>
+        <p id="fileName" style="font-size: 0.9rem; margin-top: 5px;"></p>
         <p>Drag and drop or click to upload</p>
       </div>
       

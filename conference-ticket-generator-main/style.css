@@ -37,7 +37,9 @@ form{
 
 .avatar img{
     background-color: bisque;
-    border-radius: 5px
+    border-radius: 10px;
+    width:50px;
+    margin-top: 15px;
 }
 
 .info{
