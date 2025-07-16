@@ -41,3 +41,28 @@ avatar.addEventListener("input",(e)=>{
   }
   // console.log("Input after clearing:", e.target.files.length);
 })
+
+const email = document.getElementById("email")
+
+email.addEventListener("input", (e) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(email)) {
+        console.log("Valid email");
+    } else {
+        console.log("Invalid email");
+        alert("wrong email")
+        email.innerHTML=""
+    }
+})
+
+const git_id = document.getElementById("git_name")
+git_id.addEventListener("input",(e) => {
+    const githubRegex = /^(?!-)(?!.*--)[a-zA-Z0-9-]{1,39}(?<!-)$/;
+    
+    if (githubRegex.test(git_id)) {
+        console.log("Valid GitHub username");
+    } 
+    else {
+        console.log("Invalid GitHub username");
+    }
+})
