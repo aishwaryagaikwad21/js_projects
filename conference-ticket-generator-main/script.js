@@ -15,8 +15,7 @@ avatar.addEventListener("input",(e)=>{
     const maxSize = 500*1024;
     const fileNameDisplay = document.getElementById("fileName");
 
-
-    if (file) {
+  if (file) {
     fileNameDisplay.textContent = `${file.name}`;
 
     if (file.size > maxSize) {
@@ -29,7 +28,7 @@ avatar.addEventListener("input",(e)=>{
         profile.innerHTML = ""; //removes the icon
         const reader = new FileReader();
         reader.onload = function () {
-            const img = document.createElement("img");
+            const img = document.createElement("img"); //instead of icon display avatar
             img.src = reader.result;
             img.alt = "Profile Preview";
             img.style.width = "50px";
@@ -39,13 +38,13 @@ avatar.addEventListener("input",(e)=>{
             profile.appendChild(img);
              localStorage.setItem("avatarImage", reader.result);
             console.log(reader.result)
-    };
-    reader.readAsDataURL(file);
+      };
+      reader.readAsDataURL(file);
     }
-  } else {
+  } 
+  else {
     fileNameDisplay.textContent = "";
   }
-  // console.log("Input after clearing:", e.target.files.length);
 })
 
 const email = document.getElementById("email")
@@ -63,8 +62,6 @@ email.addEventListener("input", (e) => {
         console.log("Invalid email");
         email.style.borderBlockColor = 'red'
         isEmailValid = false
-        //alert("wrong email")
-        //email.value=""
     }
      toggleSubmitButton();
 })
@@ -90,8 +87,7 @@ git_id.addEventListener("input",(e) => {
      toggleSubmitButton();
 })
 
-
-//check github account
+//check github account - Only for testing
 fetch(`https://api.github.com/users/${git_id.value}`)
       .then(res => {
                 if (res.ok) {
@@ -115,24 +111,20 @@ function toggleSubmitButton() {
 }
 
 formFinal.addEventListener("submit", function (e) {
-      e.preventDefault(); // prevent default form action
-      console.log(name)
-
-    //(Optional) Do your validation or localStorage saving here
-      localStorage.setItem("name", name.value);
-      localStorage.setItem("email",email.value)
-      localStorage.setItem("git_id",git_id.value)
+      e.preventDefault(); //prevent default form action
+   
+  //localStorage saving here
+    localStorage.setItem("name", name.value);
+    localStorage.setItem("email",email.value)
+    localStorage.setItem("git_id",git_id.value)
       
-       // Add a short delay OR redirect only after avatar is saved
-        setTimeout(() => {
-          window.location.href = "ticket.html";
-        }, 500); // 0.5 second delay
+  // Add a short delay OR redirect only after avatar is saved
+    setTimeout(() => {
+        window.location.href = "ticket.html";
+       }, 500); // 0.5 second delay
           // Redirect to a new page
-    
 });
 
 window.onload = function () {
   document.getElementById("myForm").reset(); // Clears all fields
 }; 
-
-//also clearing data from localstorage on reloading
