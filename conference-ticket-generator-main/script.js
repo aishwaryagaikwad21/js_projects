@@ -37,6 +37,8 @@ avatar.addEventListener("input",(e)=>{
             img.style.borderRadius = "12px"; 
             img.style.objectFit = "cover";
             profile.appendChild(img);
+             localStorage.setItem("avatarImage", reader.result);
+            console.log(reader.result)
     };
     reader.readAsDataURL(file);
     }
@@ -86,17 +88,19 @@ git_id.addEventListener("input",(e) => {
      toggleSubmitButton();
 })
 
-// fetch(`https://api.github.com/users/${git_id.value}`)
-//       .then(res => {
-//                 if (res.ok) {
-//                 console.log("GitHub user exists!");
-//                 console.log(git_id.value)
-//                 git_id.style.borderBlockColor = 'green'
-//                 } else {
-//                 console.log("GitHub user not found.");
-//                 git_id.style.borderBlockColor = 'red'
-//                 }
-//       });
+
+//check github account
+fetch(`https://api.github.com/users/${git_id.value}`)
+      .then(res => {
+                if (res.ok) {
+                console.log("GitHub user exists!");
+                console.log(git_id.value)
+                git_id.style.borderBlockColor = 'green'
+                } else {
+                console.log("GitHub user not found.");
+                git_id.style.borderBlockColor = 'red'
+                }
+      });
 
 const formFinal = document.getElementById("myForm");
 
@@ -107,7 +111,8 @@ function toggleSubmitButton() {
         submitBtn.disabled = true;
     }
 }
-     formFinal.addEventListener("submit", function (e) {
+
+formFinal.addEventListener("submit", function (e) {
       e.preventDefault(); // prevent default form action
       console.log(name)
 
@@ -115,8 +120,13 @@ function toggleSubmitButton() {
       localStorage.setItem("name", name.value);
       localStorage.setItem("email",email.value)
       localStorage.setItem("git_id",git_id.value)
-    // Redirect to a new page
-    window.location.href = "ticket.html";  // or any other HTML file
+      
+       // Add a short delay OR redirect only after avatar is saved
+        setTimeout(() => {
+          window.location.href = "ticket.html";
+        }, 500); // 0.5 second delay
+          // Redirect to a new page
+    
 });
 
 window.onload = function () {
