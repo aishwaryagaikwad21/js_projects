@@ -137,7 +137,7 @@ button:disabled {
    margin-top:10px;
    border-radius: 5px;
    border-style: dashed;
-   border-width: 1.9px; /* 👈 reduce this for thinner dashed border */
+   border-width: 1.9px; 
   border-color: #ccc;
 }
 

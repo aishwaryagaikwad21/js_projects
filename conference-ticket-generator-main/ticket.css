@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url('./assets/images/background-desktop.png');
+  color: white;
+  font-family: 'Inconsolata', monospace;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+/* Ticket Container */
+.ticket {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 2rem;
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.ticket-text {
+  font-size: 1.2rem;
+  color: #f8c471;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  
+}
+
+.ticket h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+/* Details */
+.details {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+background-image: url('./assets/images/pattern-ticket.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  
+  
+  padding: 2rem;
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.details div {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.ticketID {
+  font-size: 0.9rem;
+  color: #ccc;
+  font-style: italic;
+}
+
+/* Button */
+button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #f8c471;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #e67e22;
+}
