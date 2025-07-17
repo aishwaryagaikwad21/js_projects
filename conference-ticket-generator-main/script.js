@@ -100,7 +100,7 @@ fetch(`https://api.github.com/users/${git_id.value}`)
                 console.log("GitHub user not found.");
                 git_id.style.borderBlockColor = 'red'
                 }
-      });
+});
 
 const formFinal = document.getElementById("myForm");
 

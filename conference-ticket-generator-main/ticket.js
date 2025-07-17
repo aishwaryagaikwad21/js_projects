@@ -26,4 +26,27 @@ const timestamp = Date.now(); // milliseconds since Jan 1, 1970
   const random = Math.floor(Math.random() * 1000); // random number 0–999
 //   document.getElementById('ticketID').innerHTML = `REG-${timestamp}-${random}`;
 
-document.getElementById('ticketID').textContent = `REG-${timestamp}-${random}`;
+document.getElementById('ticketID').textContent = `CONF-${timestamp}-${random}`;
+
+// You can encode as plain text or JSON string
+const ticketData = {
+  name: name,
+  email: email,
+  git_id: git_id,
+  //avatar: avatarImage // Be cautious: base64 avatar is large
+};
+
+const qrData = JSON.stringify(ticketData);
+
+new QRCode(document.getElementById("qrcode"), {
+  text: qrData,
+  width: 70,
+  height: 70,
+  colorLight: "#ffffff",
+  correctLevel: QRCode.CorrectLevel.H 
+});
+
+
+
+//document.getElementById("qrcode").style.backgroundColor = "#fff";
+//document.getElementById("qrcode").style.padding = "10px";

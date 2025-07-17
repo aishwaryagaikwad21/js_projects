@@ -6,25 +6,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="ticket.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
-<!--<body>
- 
-<div class="ticket">
-  <p class="ticket-text">TechConf 2025</p>
-  <h1>You have been registered</h1>
-</div>
-<div class="ticketID">
-</div>
-<div id="ticketName">
-</div>
-<div id="ticketEmail">
-</div>
-<div id="ticketGit_id">
-</div>
-
-<br>
-<button>Print Your Ticket</button>
-<script src="ticket.js"></script>-->
 
 <body>
 <header>
@@ -41,12 +24,18 @@
   <div id="ticketName2">Your Name</div>
   <div id="ticketEmail2">you@example.com</div>
   <div id="ticketGit_id">@githubhandle</div>
-  <div id="ticketAvatar"></div>
+  <div class="images">
+  
+    <div id="ticketAvatar" style="margin-top: -90px;"></div>
+    <div id="qrcode"></div>
+  </div>
+
 </div>
 
 <br />
 <button onclick="window.print()">Print Your Ticket</button>
 
 <script src="ticket.js"></script>
+
 </body>
 </html>
