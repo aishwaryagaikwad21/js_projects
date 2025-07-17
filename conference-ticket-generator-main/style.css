@@ -26,6 +26,11 @@ form{
    /* background-color: blueviolet; */
 }
 
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 .avatar{
    /* background-color: aqua; */
    display: flex;

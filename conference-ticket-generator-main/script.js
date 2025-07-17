@@ -6,6 +6,9 @@ const profile = document.querySelector('#upload-icon');
 
 const name = document.getElementById("name")
 
+const submitBtn = document.getElementById("submitBtn")
+submitBtn.disabled = true;// can't submit without valid inputs
+
 avatar.addEventListener("input",(e)=>{
     const file = e.target.files[0];
     console.log(file.size)
@@ -44,6 +47,7 @@ avatar.addEventListener("input",(e)=>{
 })
 
 const email = document.getElementById("email")
+let isEmailValid = false
 
 email.addEventListener("input", (e) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -52,15 +56,19 @@ email.addEventListener("input", (e) => {
         console.log("Valid email");
         console.log(email.value)
         email.style.borderBlockColor = 'green'
+        isEmailValid = true
     } else {
         console.log("Invalid email");
         email.style.borderBlockColor = 'red'
+        isEmailValid = false
         //alert("wrong email")
         //email.value=""
     }
+     toggleSubmitButton();
 })
 
 const git_id = document.getElementById("git_name")
+let isGitValid = false; // Global variable to store validation status
 
 git_id.addEventListener("input",(e) => {
     const githubRegex = /^(?!-)(?!.*--)[a-zA-Z0-9-]{1,39}(?<!-)$/;
@@ -68,36 +76,47 @@ git_id.addEventListener("input",(e) => {
 
     if (githubRegex.test(gitValue)) {
         console.log("Valid GitHub username");
-        fetch(`https://api.github.com/users/${gitValue}`)
-            .then(res => {
-                if (res.ok) {
-                console.log("GitHub user exists!");
-                console.log(git_id.value)
-                //git_id.style.borderBlockColor = 'green'
-                } else {
-                console.log("GitHub user not found.");
-                //git_id.style.borderBlockColor = 'red'
-                }
-            });
+        isGitValid = true;
     } 
     else {
         console.log("Invalid GitHub username");
         git_id.value = "";
+        isGitValid = false
     }
+     toggleSubmitButton();
 })
+
+// fetch(`https://api.github.com/users/${git_id.value}`)
+//       .then(res => {
+//                 if (res.ok) {
+//                 console.log("GitHub user exists!");
+//                 console.log(git_id.value)
+//                 git_id.style.borderBlockColor = 'green'
+//                 } else {
+//                 console.log("GitHub user not found.");
+//                 git_id.style.borderBlockColor = 'red'
+//                 }
+//       });
 
 const formFinal = document.getElementById("myForm");
 
-formFinal.addEventListener("submit", function (e) {
-  e.preventDefault(); // prevent default form action
-  console.log(name)
+function toggleSubmitButton() {
+    if (isGitValid && isEmailValid) {
+        submitBtn.disabled = false;
+    } else {
+        submitBtn.disabled = true;
+    }
+}
+     formFinal.addEventListener("submit", function (e) {
+      e.preventDefault(); // prevent default form action
+      console.log(name)
 
-  //(Optional) Do your validation or localStorage saving here
-    localStorage.setItem("name", name.value);
-    localStorage.setItem("email",email.value)
-    localStorage.setItem("git_id",git_id.value)
-  // Redirect to a new page
-  window.location.href = "ticket.html";  // or any other HTML file
+    //(Optional) Do your validation or localStorage saving here
+      localStorage.setItem("name", name.value);
+      localStorage.setItem("email",email.value)
+      localStorage.setItem("git_id",git_id.value)
+    // Redirect to a new page
+    window.location.href = "ticket.html";  // or any other HTML file
 });
 
 window.onload = function () {
