@@ -78,11 +78,13 @@ git_id.addEventListener("input",(e) => {
 
     if (githubRegex.test(gitValue)) {
         console.log("Valid GitHub username");
+        git_id.style.borderBlockColor = 'green'
         isGitValid = true;
     } 
     else {
         console.log("Invalid GitHub username");
         git_id.value = "";
+        git_id.style.borderBlockColor = 'red'
         isGitValid = false
     }
      toggleSubmitButton();
@@ -95,10 +97,10 @@ fetch(`https://api.github.com/users/${git_id.value}`)
                 if (res.ok) {
                 console.log("GitHub user exists!");
                 console.log(git_id.value)
-                git_id.style.borderBlockColor = 'green'
+                //git_id.style.borderBlockColor = 'green'
                 } else {
                 console.log("GitHub user not found.");
-                git_id.style.borderBlockColor = 'red'
+                //git_id.style.borderBlockColor = 'red'
                 }
 });
 
