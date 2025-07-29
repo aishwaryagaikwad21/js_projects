@@ -25,5 +25,5 @@
 
 ![Design preview for the Conference ticket generator coding challenge](./initial.png)
 ![Validated fields](./validated.png)
-![Final Ticket](./final_ticket.png)
+![Final Ticket](./custom.png)
 

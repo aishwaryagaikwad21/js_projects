@@ -6,13 +6,14 @@ document.getElementById("ticketName2").textContent = name;
 const email = localStorage.getItem("email")
 console.log(email)
 document.getElementById("ticketEmail").textContent = email;
-document.getElementById("ticketEmail2").textContent = email;
+document.getElementById("ticketEmail").style.color = "hsl(7, 88%, 67%)"
+//document.getElementById("ticketEmail2").textContent = email;
 
 const git_id = localStorage.getItem("git_id")
 document.getElementById("ticketGit_id").textContent = git_id;
 
   const avatarImage = localStorage.getItem("avatarImage");
-  console.log(avatarImage)
+  //console.log(avatarImage)
 
   if (avatarImage) {
     const img = document.createElement("img");
@@ -27,6 +28,12 @@ const timestamp = Date.now(); // milliseconds since Jan 1, 1970
 //   document.getElementById('ticketID').innerHTML = `REG-${timestamp}-${random}`;
 
 document.getElementById('ticketID').textContent = `CONF-${timestamp}-${random}`;
+//document.getElementById("ticketName").style.color = "red";
+
+const ticketName = document.getElementById("ticketName");
+ticketName.style.background = "linear-gradient(to right, #f27d7a, #fddde6, #ffffff)";
+ticketName.style.webkitBackgroundClip = "text";
+ticketName.style.webkitTextFillColor = "transparent";
 
 // You can encode as plain text or JSON string
 const ticketData = {
@@ -46,7 +53,8 @@ new QRCode(document.getElementById("qrcode"), {
   correctLevel: QRCode.CorrectLevel.H 
 });
 
-
+const ticketName2 = document.getElementById("ticketName2")
+ticketName2.style.fontSize = "28px"
 
 //document.getElementById("qrcode").style.backgroundColor = "#fff";
 //document.getElementById("qrcode").style.padding = "10px";

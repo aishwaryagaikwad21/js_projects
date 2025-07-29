@@ -10,6 +10,7 @@ body {
   font-family: 'Inconsolata', monospace;
   text-align: center;
   padding: 3rem 1rem;
+background: linear-gradient(135deg, #0f021f, #250b5c);
 }
 
 
@@ -40,11 +41,19 @@ background-image: url('./assets/images/pattern-ticket.svg');
   word-break: break-word;
 }
 
+
 .ticketID {
-  font-size: 0.9rem;
-  color: #ccc;
-  font-style: italic;
+  position: absolute;
+  right: 550px; /* Adjust spacing to sit outside ticket edge */
+  top: 55%; 
+  transform: rotate(90deg) translateY(-50%);
+  transform-origin: center;
+  font-size: 12px;
+  color: white;
+  font-family: monospace;
+  opacity: 0.6;
 }
+
 
 /* Button */
 button {
@@ -57,6 +66,13 @@ background-color: #ff4d4d;
   border-radius: 6px;
 }
 
+.git {
+  display: flex;
+  align-items: center;       
+  justify-content: center;  
+  gap: 8px;                 
+  margin-top: 20px;          
+}
 .profile-pic {
   width: 70px;
   height: 70px;
@@ -70,9 +86,9 @@ background-color: #ff4d4d;
   border-radius: 8px;
   width: fit-content;
   margin: 0 auto;
+  margin-left: -70px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
-
 .images{
     display: flex;
     flex-direction: row;

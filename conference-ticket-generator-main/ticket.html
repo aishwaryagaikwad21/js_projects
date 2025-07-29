@@ -13,21 +13,27 @@
 <header>
     <img src="./assets/images/logo-full.svg" alt="conference logo">
   </header>
-<div class="ticket">
-  <p class="ticket-text">TechConf 2025</p>
-</div>
-<h1>Congrats, <span id="ticketName"></span>!</h1>
-<h1>Your ticket is ready</h1>
-<p>We've emailed your ticket to <span id="ticketEmail"></span> <br>and will send updates in the run up to the event</p>
+<h1 style="margin-top: 60px;">Congrats, <span id="ticketName"></span>!</h1>
+<h1 >Your ticket is ready</h1>
+<p style="margin-top: 20px;">We've emailed your ticket to <span id="ticketEmail"></span> <br>and will send updates in the run up to the event</p>
 <div class="details">
-  <div class="ticketID" id="ticketID">#TCKT2025</div>
+  
   <div id="ticketName2"></div>
-  <div id="ticketEmail2"></div>
-  <div id="ticketGit_id"></div>
-  <div class="images">
-    <div id="ticketAvatar" style="margin-top: -90px;"></div>
-    <div id="qrcode"></div>
+  <div class="git">
+    <img src="./assets/images/icon-github.svg" alt="">
+    <div id="ticketGit_id"></div>
   </div>
+  <div class="ticketID" id="ticketID"></div>
+  
+  <div class="images">
+    <div id="ticketAvatar" style="margin-top:-80px;"></div>
+     <div class="header-container">
+      <div id="qrcode"></div>
+      <img src="./assets/images/logo-full.svg" alt="" style="margin-left: 50px; margin-top:-400px">
+    </div> 
+    
+  </div>
+
 </div>
 <br />
 <button onclick="window.print()">Print Your Ticket</button>
