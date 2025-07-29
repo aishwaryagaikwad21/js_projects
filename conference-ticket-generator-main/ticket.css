@@ -44,7 +44,7 @@ background-image: url('./assets/images/pattern-ticket.svg');
 
 .ticketID {
   position: absolute;
-  right: 550px; /* Adjust spacing to sit outside ticket edge */
+  right: 50px; /* Adjust spacing to sit outside ticket edge */
   top: 55%; 
   transform: rotate(90deg) translateY(-50%);
   transform-origin: center;

@@ -1,5 +1,9 @@
 # Frontend Mentor - Conference ticket generator
 - It features a complete registration flow with field validation, GitHub integration, local storage, avatar upload, QR code generation, and a printable ticket.
+
+## Visit 
+- effervescent-quokka-48b220.netlify.app
+
 ## Features 
 - Form
   - Required fields checked - Ensures no field is left empty.
