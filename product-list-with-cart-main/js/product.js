@@ -9,6 +9,7 @@ fetch('./data.json')
   })
   .catch(error => console.error("Error loading JSON:", error));
 
+
 renderProducts = (data) => {
    const deserts = document.getElementById("deserts")
    deserts.innerHTML = "";
@@ -17,17 +18,23 @@ renderProducts = (data) => {
         const card = document.createElement("div");
         card.className = "card"
         //console.log(element.name)
+        const image_wrapper = document.createElement("div");
+        image_wrapper.className = "image_wrapper"
+
         const image = document.createElement("img")
         image.className = "image"
         image.src = element.image.desktop
-        card.appendChild(image)
+
+        image_wrapper.appendChild(image)
         
 
         const btn = document.createElement("button")
         btn.className = "btn"
         btn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
-        card.appendChild(btn)
+        image_wrapper.appendChild(btn)
         //deserts.appendChild(btn)
+
+        card.appendChild(image_wrapper)
 
         const deets = document.createElement("div")
         deets.className = "deets"

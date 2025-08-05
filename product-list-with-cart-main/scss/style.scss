@@ -1,49 +1,58 @@
-$primary-color: #ff69b4;
+
 $price-color: hsl(14, 86%, 42%);
+$font-size: 16px;
+$background_colour: hsl(13, 31%, 94%);
 
 body {
   font-family: sans-serif;
-  background-color: #f9f9f9;
+  background-color: $background_colour;
 
   #deserts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem; // or 1.5rem for tighter layout
-    padding: 2rem 1rem;
+    gap: 1px; 
 
-  
   .card {
-    //border: 1px solid #ccc;
     padding: 1rem;
-    //border-radius: 10px;
-    overflow: hidden;
+    border-radius: 10px;
 
-    .image{
-        position: relative;
+    .image_wrapper{
+        position:relative;
         border-radius: 10px;
-        overflow: hidden;
-        width: 100%;
-        height: 180px;
-        object-fit: cover; 
-        display: block;
-    }
-
-    .btn {
-      background-color: $primary-color;
-      color: white;
-      padding: 8px 12px;
-      border: none;
-      border-radius: 5px;
+        overflow: visible;
+        .image{
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+            height: 180px;
+            object-fit: cover; 
+            display: block;
+        }
+        .btn {
+             position: absolute;     // 👈 Now it works!
+            bottom: -20px;          // hangs below image   
+            background-color:hsl(20, 50%, 98%);
+            color: black;
+            padding: 8px 25px;
+            border: 1px hsl(12, 20%, 44%) solid;
+            margin-left: 20%;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-radius: 999px;
+        }
     }
 
     .deets{
+        padding-top: 17px;
         .category {
             font-size: 0.9rem;
             margin-bottom: 0.25rem; // reduce space below
         }
 
         .name {
-            font-size: 1rem;
+            font-size: $font-size;
             font-weight: bold;
             margin: 0;              // remove default margin
         }
