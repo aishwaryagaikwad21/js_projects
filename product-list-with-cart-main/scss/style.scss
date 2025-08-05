@@ -43,6 +43,42 @@ body {
             gap: 0.5rem;
             border-radius: 999px;
             font-weight: bold;
+            cursor: pointer; // points a finger
+
+           .quantityControls {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 1.5rem;
+
+                .decrement{
+                    width:20px;
+                    height:20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: hsl(14, 86%, 42%);
+                    border:1px hsl(13, 31%, 94%) solid;
+                    border-radius: 50%;
+                    padding:0;
+                    cursor: pointer;
+                }
+
+                .increment{
+                    width:20px;
+                    height:20px;
+                    justify-content: center;
+                    background-color: hsl(14, 86%, 42%);
+                    border:1px hsl(13, 31%, 94%) solid;
+                    border-radius: 50%;
+                    padding:0;
+                    cursor: pointer;
+                }
+            }
+
+
+ 
         }
     }
 
@@ -69,4 +105,5 @@ body {
   }
 }
 }
+
 

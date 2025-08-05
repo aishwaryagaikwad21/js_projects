@@ -11,8 +11,9 @@ fetch('./data.json')
 
 let cart = {}
 
-product = (name, price) => {
+product = (name, price, category) => {
   const key = name;
+  
   if(!cart[key]){
     cart[key] ={
       count:0,
@@ -26,6 +27,38 @@ product = (name, price) => {
   console.log(`${key} clicked ${cart[key].count} times`)
   console.log(`total price: $${cart[key].price.toFixed(2)}`);
   //console.log(cart)
+  
+  let img = document.getElementById(`img-${category.toLowerCase().replaceAll(" ", "-")}`)
+  img.style.border = "2px hsl(14, 86%, 42%) solid"
+
+  let btn = document.getElementById(`btn-${category.toLowerCase().replaceAll(" ", "-")}`)
+  btn.style.backgroundColor = "hsl(14, 86%, 42%)"
+  btn.style.color = "hsl(20, 50%, 98%)"
+  btn.innerText= ""
+
+  const quantityControls = document.createElement("div");
+  quantityControls.className = "quantityControls"
+
+  const count = document.createElement("span")
+  count.className = "count";
+  count.innerText = cart[key].count
+
+  const decrement = document.createElement("button");
+  decrement.className = "decrement"
+  decrement.innerHTML = `<img src='./assets/images/icon-decrement-quantity.svg' alt='decrement'>`
+  // btn.appendChild(decrement)
+
+  const increment = document.createElement("button");
+  increment.className = "increment"
+  increment.innerHTML = `<img src='./assets/images/icon-increment-quantity.svg' alt='increment'>`
+  // btn.appendChild(increment)
+
+  quantityControls.appendChild(decrement);
+  quantityControls.appendChild(count);
+  quantityControls.appendChild(increment)
+
+  btn.appendChild(quantityControls);
+
 }
 
 
@@ -43,6 +76,7 @@ renderProducts = (data) => {
 
         const image = document.createElement("img")
         image.className = "image"
+        image.id = `img-${element.category.toLowerCase().replaceAll(" ", "-")}`;
         image.src = element.image.desktop
 
         image_wrapper.appendChild(image)
@@ -50,9 +84,10 @@ renderProducts = (data) => {
 
         const btn = document.createElement("button")
         btn.className = "btn"
+        btn.id = `btn-${element.category.toLowerCase().replaceAll(" ", "-")}`; // "Strawberry Cake --> btn-strawberry-cake"
         btn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
         image_wrapper.appendChild(btn)
-        btn.addEventListener(("click"), ()=> product(element.name, element.price))
+        btn.addEventListener(("click"), ()=> product(element.name, element.price,element.category))
         //deserts.appendChild(btn)
 
         card.appendChild(image_wrapper)
