@@ -15,11 +15,11 @@ body {
 
   .card {
     padding: 1rem;
-    border-radius: 10px;
+    border-radius: 5px;
 
     .image_wrapper{
         position:relative;
-        border-radius: 10px;
+        border-radius: 1px;
         overflow: visible;
         .image{
             position: relative;
@@ -31,7 +31,7 @@ body {
             display: block;
         }
         .btn {
-             position: absolute;     // 👈 Now it works!
+             position: absolute; 
             bottom: -20px;          // hangs below image   
             background-color:hsl(20, 50%, 98%);
             color: black;
@@ -76,9 +76,6 @@ body {
                     cursor: pointer;
                 }
             }
-
-
- 
         }
     }
 

@@ -9,11 +9,11 @@ body #deserts {
 }
 body #deserts .card {
   padding: 1rem;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 body #deserts .card .image_wrapper {
   position: relative;
-  border-radius: 10px;
+  border-radius: 1px;
   overflow: visible;
 }
 body #deserts .card .image_wrapper .image {

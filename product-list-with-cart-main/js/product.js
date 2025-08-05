@@ -11,7 +11,7 @@ fetch('./data.json')
 
 let cart = {}
 
-product = (name, price, category) => {
+product = (name, price, category,button) => {
   const key = name;
   
   if(!cart[key]){
@@ -21,11 +21,13 @@ product = (name, price, category) => {
     };
   }
 
-  cart[key].count += 1;
-  cart[key].price += price;
+  if(cart[key].count === 0){
+    cart[key].count += 1;
+    cart[key].price += price;
+  }
 
   console.log(`${key} clicked ${cart[key].count} times`)
-  console.log(`total price: $${cart[key].price.toFixed(2)}`);
+  console.log(`total price of ${key}: $${cart[key].price.toFixed(2)}`);
   //console.log(cart)
   
   let img = document.getElementById(`img-${category.toLowerCase().replaceAll(" ", "-")}`)
@@ -45,13 +47,29 @@ product = (name, price, category) => {
 
   const decrement = document.createElement("button");
   decrement.className = "decrement"
+  decrement.id = `dec-${category.toLowerCase().replaceAll(" ", "-")}`
   decrement.innerHTML = `<img src='./assets/images/icon-decrement-quantity.svg' alt='decrement'>`
+  
+  decrement.addEventListener(("click"), () => {
+    if(cart[key].count > 1){
+      cart[key].count--;
+      cart[key].price -= price;
+      count.innerText = cart[key].count;
+      console.log(`${key} count: ${cart[key].count}, total: $${cart[key].price.toFixed(2)}`);
+    }
+  })
+  
   // btn.appendChild(decrement)
 
   const increment = document.createElement("button");
   increment.className = "increment"
   increment.innerHTML = `<img src='./assets/images/icon-increment-quantity.svg' alt='increment'>`
   // btn.appendChild(increment)
+  increment.addEventListener("click", () => {
+    cart[key].count += 1;
+    cart[key].price += price;
+    count.innerText = cart[key].count;
+  })
 
   quantityControls.appendChild(decrement);
   quantityControls.appendChild(count);
@@ -73,6 +91,7 @@ renderProducts = (data) => {
         //console.log(element.name)
         const image_wrapper = document.createElement("div");
         image_wrapper.className = "image_wrapper"
+        image_wrapper.id = `image_wrapper-${element.category.toLowerCase().replaceAll(" ", "-")}`
 
         const image = document.createElement("img")
         image.className = "image"
@@ -87,7 +106,7 @@ renderProducts = (data) => {
         btn.id = `btn-${element.category.toLowerCase().replaceAll(" ", "-")}`; // "Strawberry Cake --> btn-strawberry-cake"
         btn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
         image_wrapper.appendChild(btn)
-        btn.addEventListener(("click"), ()=> product(element.name, element.price,element.category))
+        btn.addEventListener(("click"), ()=> product(element.name, element.price,element.category,btn))
         //deserts.appendChild(btn)
 
         card.appendChild(image_wrapper)
