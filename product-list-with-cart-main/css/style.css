@@ -2,17 +2,45 @@ body {
   font-family: sans-serif;
   background-color: #f9f9f9;
 }
-body .card {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 10px;
+body #deserts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem 1rem;
 }
-body .card .btn {
+body #deserts .card {
+  padding: 1rem;
+  overflow: hidden;
+}
+body #deserts .card .image {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+body #deserts .card .btn {
   background-color: #ff69b4;
   color: white;
   padding: 8px 12px;
   border: none;
   border-radius: 5px;
+}
+body #deserts .card .deets .category {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+body #deserts .card .deets .name {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+}
+body #deserts .card .deets .price {
+  font-weight: bold;
+  color: hsl(14, 86%, 42%);
+  margin-top: 0.25rem;
 }
 
 /*# sourceMappingURL=style.css.map */

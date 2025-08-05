@@ -18,30 +18,38 @@ renderProducts = (data) => {
         card.className = "card"
         //console.log(element.name)
         const image = document.createElement("img")
-        image.src = element.image.thumbnail
+        image.className = "image"
+        image.src = element.image.desktop
         card.appendChild(image)
         
 
         const btn = document.createElement("button")
         btn.className = "btn"
-        btn.innerText = "Add to cart"
+        btn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
         card.appendChild(btn)
         //deserts.appendChild(btn)
+
+        const deets = document.createElement("div")
+        deets.className = "deets"
 
         const category = document.createElement("p");
         category.className = "category"
         category.innerHTML = element.category
-        card.appendChild(category)
+        deets.appendChild(category)
+        // card.appendChild(category)
 
         const name = document.createElement("h4");
         name.className = "name"
         name.innerHTML = element.name
-        card.appendChild(name)
+        deets.appendChild(name)
+        // card.appendChild(name)
 
         const price = document.createElement("strong");
         price.className = "price"
         price.innerHTML = `$${element.price}`
-        card.appendChild(price)
+        deets.appendChild(price)
+        
+        card.appendChild(deets)
 
         deserts.appendChild(card)
    });
