@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: "Red Hat Text";
   background-color: hsl(13, 31%, 94%);
 }
 body #deserts {
@@ -37,12 +37,14 @@ body #deserts .card .image_wrapper .btn {
   align-items: center;
   gap: 0.5rem;
   border-radius: 999px;
+  font-weight: bold;
 }
 body #deserts .card .deets {
-  padding-top: 17px;
+  padding-top: 15px;
 }
 body #deserts .card .deets .category {
   font-size: 0.9rem;
+  color: hsl(14, 25%, 72%);
   margin-bottom: 0.25rem;
 }
 body #deserts .card .deets .name {

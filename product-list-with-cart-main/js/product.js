@@ -9,6 +9,26 @@ fetch('./data.json')
   })
   .catch(error => console.error("Error loading JSON:", error));
 
+let cart = {}
+
+product = (name, price) => {
+  const key = name;
+  if(!cart[key]){
+    cart[key] ={
+      count:0,
+      price:0
+    };
+  }
+
+  cart[key].count += 1;
+  cart[key].price += price;
+
+  console.log(`${key} clicked ${cart[key].count} times`)
+  console.log(`total price: $${cart[key].price.toFixed(2)}`);
+  //console.log(cart)
+}
+
+
 
 renderProducts = (data) => {
    const deserts = document.getElementById("deserts")
@@ -32,6 +52,7 @@ renderProducts = (data) => {
         btn.className = "btn"
         btn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
         image_wrapper.appendChild(btn)
+        btn.addEventListener(("click"), ()=> product(element.name, element.price))
         //deserts.appendChild(btn)
 
         card.appendChild(image_wrapper)
@@ -53,7 +74,7 @@ renderProducts = (data) => {
 
         const price = document.createElement("strong");
         price.className = "price"
-        price.innerHTML = `$${element.price}`
+        price.innerHTML = `$${element.price.toFixed(2)}`
         deets.appendChild(price)
         
         card.appendChild(deets)

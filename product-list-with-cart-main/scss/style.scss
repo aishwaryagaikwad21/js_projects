@@ -2,9 +2,10 @@
 $price-color: hsl(14, 86%, 42%);
 $font-size: 16px;
 $background_colour: hsl(13, 31%, 94%);
+$category_colour: hsl(14, 25%, 72%);
 
 body {
-  font-family: sans-serif;
+  font-family: 'Red Hat Text';
   background-color: $background_colour;
 
   #deserts {
@@ -41,13 +42,15 @@ body {
             align-items: center;
             gap: 0.5rem;
             border-radius: 999px;
+            font-weight: bold;
         }
     }
 
     .deets{
-        padding-top: 17px;
+        padding-top: 15px;
         .category {
             font-size: 0.9rem;
+            color:$category_colour;
             margin-bottom: 0.25rem; // reduce space below
         }
 
