@@ -77,8 +77,14 @@ product = (name, price, category,button) => {
 
   btn.appendChild(quantityControls);
 
-}
+  //Cart container
+  const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
+  console.log(`Total items: ${totalItems}`);
 
+  const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
+  console.log(`Amount: ${totalAmount}`)
+
+}
 
 
 renderProducts = (data) => {
