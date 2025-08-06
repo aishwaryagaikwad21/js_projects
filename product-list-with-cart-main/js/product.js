@@ -57,16 +57,16 @@ product = (name, price, category,image_wrapper) => {
       count.innerText = cart[key].count;
       console.log(`${key} count: ${cart[key].count}, total: $${cart[key].price.toFixed(2)}`);
     }
-    else{
-        delete cart[key]
-        const newBtn = document.createElement("button");
-        newBtn.className = "btn"
-        newBtn.id = `btn-${category.toLowerCase().replaceAll(" ","-")}`;
-        newBtn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
-        newBtn.addEventListener("click", () => product(name,price,category,image_wrapper))
-        image_wrapper.appendChild(newBtn)
+    // else{
+    //     delete cart[key]
+    //     const newBtn = document.createElement("button");
+    //     newBtn.className = "btn"
+    //     newBtn.id = `btn-${category.toLowerCase().replaceAll(" ","-")}`;
+    //     newBtn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
+    //     newBtn.addEventListener("click", () => product(name,price,category,image_wrapper))
+    //     image_wrapper.appendChild(newBtn)
         
-    }
+    // }
   })
 
   const increment = document.createElement("button");
