@@ -2,6 +2,9 @@ body {
   font-family: "Red Hat Text";
   background-color: hsl(13, 31%, 94%);
 }
+body #container #your_cart #cart_items {
+  color: hsl(14, 86%, 42%);
+}
 body #deserts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

@@ -8,6 +8,15 @@ body {
   font-family: 'Red Hat Text';
   background-color: $background_colour;
 
+  #container{
+    
+    #your_cart{
+        #cart_items{
+            color:$price-color;
+        }
+    }
+  }
+
   #deserts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

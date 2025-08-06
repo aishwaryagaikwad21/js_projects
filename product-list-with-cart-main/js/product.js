@@ -11,7 +11,7 @@ fetch('./data.json')
 
 let cart = {}
 
-product = (name, price, category,button) => {
+product = (name, price, category,image_wrapper) => {
   const key = name;
   
   if(!cart[key]){
@@ -57,9 +57,17 @@ product = (name, price, category,button) => {
       count.innerText = cart[key].count;
       console.log(`${key} count: ${cart[key].count}, total: $${cart[key].price.toFixed(2)}`);
     }
+    else{
+        delete cart[key]
+        const newBtn = document.createElement("button");
+        newBtn.className = "btn"
+        newBtn.id = `btn-${category.toLowerCase().replaceAll(" ","-")}`;
+        newBtn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
+        newBtn.addEventListener("click", () => product(name,price,category,image_wrapper))
+        image_wrapper.appendChild(newBtn)
+        
+    }
   })
-  
-  // btn.appendChild(decrement)
 
   const increment = document.createElement("button");
   increment.className = "increment"
@@ -80,10 +88,10 @@ product = (name, price, category,button) => {
   //Cart container
   const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
   console.log(`Total items: ${totalItems}`);
+  document.getElementById("totalItems").innerText = totalItems;
 
   const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
-  console.log(`Amount: ${totalAmount}`)
-
+  console.log(`Amount: $${totalAmount}`)
 }
 
 
@@ -112,8 +120,7 @@ renderProducts = (data) => {
         btn.id = `btn-${element.category.toLowerCase().replaceAll(" ", "-")}`; // "Strawberry Cake --> btn-strawberry-cake"
         btn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
         image_wrapper.appendChild(btn)
-        btn.addEventListener(("click"), ()=> product(element.name, element.price,element.category,btn))
-        //deserts.appendChild(btn)
+        btn.addEventListener(("click"), ()=> product(element.name, element.price,element.category,image_wrapper,card))
 
         card.appendChild(image_wrapper)
 
