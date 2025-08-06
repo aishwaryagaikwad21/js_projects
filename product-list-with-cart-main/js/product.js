@@ -11,13 +11,14 @@ fetch('./data.json')
 
 let cart = {}
 
-product = (name, price, category,image_wrapper) => {
+product = (name, price, category) => {
   const key = name;
   
   if(!cart[key]){
     cart[key] ={
       count:0,
-      price:0
+      price:0,
+      unitPrice:price
     };
   }
 
@@ -57,18 +58,7 @@ product = (name, price, category,image_wrapper) => {
       count.innerText = cart[key].count;
       console.log(`${key} count: ${cart[key].count}, total: $${cart[key].price.toFixed(2)}`);
     }
-    // else{
-    //     delete cart[key]
-    //     const newBtn = document.createElement("button");
-    //     newBtn.className = "btn"
-    //     newBtn.id = `btn-${category.toLowerCase().replaceAll(" ","-")}`;
-    //     newBtn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
-    //     newBtn.addEventListener("click", () => product(name,price,category,image_wrapper))
-    //     image_wrapper.appendChild(newBtn)
-        
-    // }
   })
-
   const increment = document.createElement("button");
   increment.className = "increment"
   increment.innerHTML = `<img src='./assets/images/icon-increment-quantity.svg' alt='increment'>`
@@ -85,21 +75,72 @@ product = (name, price, category,image_wrapper) => {
 
   btn.appendChild(quantityControls);
 
-  //Cart container
-  const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
-  console.log(`Total items: ${totalItems}`);
-  document.getElementById("totalItems").innerText = totalItems;
+}
 
-  const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
-  console.log(`Amount: $${totalAmount}`)
+ updateCartUI = (name,price,category) => {
+    const remove_cart = document.getElementById("empty_cart")
+    remove_cart.src = ""
+
+    const carbon_neutral = document.getElementById("carbon_neutral")
+    carbon_neutral.style.display = "block"
+
+    const confirm_button = document.getElementById("confirm_button")
+    confirm_button.style.display = "block"
+
+    const key = name;
+    if(cart[key].count === 1){ //item goes 1st time inside cart
+      const cart_name = document.getElementById("cart_item_name")
+      const item_name = document.createElement("strong")
+      item_name.innerHTML = key
+      cart_name.appendChild(item_name)
+
+      const item_quant = document.getElementById("item_quant")
+      const quantity = document.createElement("strong")
+      quantity.id = `quan-${key}`
+      quantity.innerHTML = cart[key].count
+      item_quant.appendChild(quantity)
+
+      const item_price = document.getElementById("item_price")
+      const item_p = document.createElement("p")
+      item_p.id = `item-p-${key}`
+      item_p.innerHTML = cart[key].price
+      item_price.appendChild(item_p)
+
+      const item_total = document.getElementById("item_total")
+      const item_tot = document.createElement("p")
+      item_tot.id = `item-tot-${key}`
+      item_tot.innerHTML = (cart[key].count) * Number(cart[key].unitPrice)
+      item_total.appendChild(item_tot)
+
+    } else{
+      const quantity = document.getElementById(`quan-${key}`)
+      quantity.innerHTML = cart[key].count
+
+      const item_tot = document.getElementById(`item-tot-${key}`)
+      item_tot.innerHTML = Number(cart[key].count) * Number(cart[key].unitPrice)
+    }
+
+    //Cart container
+    const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
+    console.log(`Total items: ${totalItems}`);
+    document.getElementById("totalItems").innerText = totalItems;
+
+    const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
+    console.log(`Amount: $${totalAmount}`)
 }
 
 
 renderProducts = (data) => {
    const deserts = document.getElementById("deserts")
    deserts.innerHTML = "";
+
+   const carbon_neutral = document.getElementById("carbon_neutral")
+    carbon_neutral.style.display = "none"
+
+    const confirm_button = document.getElementById("confirm_button")
+    confirm_button.style.display = "none"
+
    data.forEach(element => {
-        
         const card = document.createElement("div");
         card.className = "card"
         //console.log(element.name)
@@ -120,7 +161,10 @@ renderProducts = (data) => {
         btn.id = `btn-${element.category.toLowerCase().replaceAll(" ", "-")}`; // "Strawberry Cake --> btn-strawberry-cake"
         btn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
         image_wrapper.appendChild(btn)
-        btn.addEventListener(("click"), ()=> product(element.name, element.price,element.category,image_wrapper,card))
+        btn.addEventListener(("click"), ()=> {
+          product(element.name, element.price,element.category)
+          updateCartUI(element.name, element.price, element.category)
+        })
 
         card.appendChild(image_wrapper)
 

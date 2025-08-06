@@ -1,5 +1,5 @@
 
-$price-color: hsl(14, 86%, 42%);
+$primary-color: hsl(14, 86%, 42%);
 $font-size: 16px;
 $background_colour: hsl(13, 31%, 94%);
 $category_colour: hsl(14, 25%, 72%);
@@ -12,7 +12,7 @@ body {
     
     #your_cart{
         #cart_items{
-            color:$price-color;
+            color:$primary-color;
         }
     }
   }
@@ -53,6 +53,11 @@ body {
             border-radius: 999px;
             font-weight: bold;
             cursor: pointer; // points a finger
+            &:hover{
+                border-color: $primary-color;
+                color:$primary-color;
+            }
+            
 
            .quantityControls {
                 display: flex;
@@ -104,7 +109,7 @@ body {
 
         .price {
             font-weight: bold;
-            color: $price-color;
+            color: $primary-color;
             margin-top: 0.25rem;    // small gap above price
         }
     }

@@ -43,6 +43,10 @@ body #deserts .card .image_wrapper .btn {
   font-weight: bold;
   cursor: pointer;
 }
+body #deserts .card .image_wrapper .btn:hover {
+  border-color: hsl(14, 86%, 42%);
+  color: hsl(14, 86%, 42%);
+}
 body #deserts .card .image_wrapper .btn .quantityControls {
   display: flex;
   flex-direction: row;
