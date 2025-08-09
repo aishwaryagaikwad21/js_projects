@@ -11,6 +11,10 @@ fetch('./data.json')
 
 let cart = {}
 
+const clearItem = (key, category,btn) => {
+  cart[key].count = 0;
+}
+
 product = (name, price, category) => {
   const key = name;
   
@@ -57,6 +61,8 @@ product = (name, price, category) => {
       cart[key].price -= price;
       count.innerText = cart[key].count;
       console.log(`${key} count: ${cart[key].count}, total: $${cart[key].price.toFixed(2)}`);
+    } else{
+      clearItem(key, category,btn);
     }
   })
   const increment = document.createElement("button");
@@ -114,6 +120,7 @@ const check = []
       item_p.innerHTML = `@ $${cart[key].price.toFixed(2)}`
       second_row.appendChild(item_p)
 
+
       const item_tot = document.createElement("p")
       item_tot.id = `item-tot-${key}`
       item_tot.className = "item_tot"
@@ -121,11 +128,19 @@ const check = []
       item_tot.innerHTML = `$ ${tot_calculation.toFixed(2)}`
       second_row.appendChild(item_tot)
 
+
+      const remove_button = document.createElement("button")
+      remove_button.id = "remove_btn"
+      remove_button.innerHTML = `<img src="./assets/images/icon-remove-item.svg" alt="remove item">`
+      second_row.appendChild(remove_button)
+
       itemDeets.appendChild(second_row)
 
       const hr = document.createElement("hr")
       hr.className = "hr"
       itemDeets.appendChild(hr)
+
+      
 
     } else{
       check.push(key)
@@ -158,9 +173,6 @@ renderProducts = (data) => {
 
     const confirm_button = document.getElementById("confirm_button")
     confirm_button.style.display = "none"
-
-    const remove_btn = document.getElementById("remove")
-    remove_btn.style.display = "none"
 
    data.forEach(element => {
         const card = document.createElement("div");

@@ -128,6 +128,7 @@ body {
         h2{
             color: $primary-color;
         }
+        width: 90%;
    }
 
 .item_deets{
@@ -156,6 +157,15 @@ body {
         }
         .item_tot{
             color: hsl(12, 20%, 44%);
+        }
+        button{
+            border-radius: 50%;
+            border-style: none;
+            margin-left: auto;  // This pushes button to the far right
+            &:hover {
+                stroke: black;
+                stroke-width: 4;
+            }
         }
     }
 

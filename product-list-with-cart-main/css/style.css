@@ -104,6 +104,7 @@ body #container #deserts .card .deets .price {
   border-radius: 15px;
   padding: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  width: 90%;
 }
 #your_cart h2 {
   color: hsl(14, 86%, 42%);
@@ -133,6 +134,15 @@ body #container #deserts .card .deets .price {
 }
 .item_deets .second_row .item_tot {
   color: hsl(12, 20%, 44%);
+}
+.item_deets .second_row button {
+  border-radius: 50%;
+  border-style: none;
+  margin-left: auto;
+}
+.item_deets .second_row button:hover {
+  stroke: black;
+  stroke-width: 4;
 }
 .item_deets hr {
   border: none;
