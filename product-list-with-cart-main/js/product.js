@@ -77,6 +77,7 @@ product = (name, price, category) => {
 
 }
 
+const check = []
  updateCartUI = (name,price,category) => {
     const remove_cart = document.getElementById("empty_cart")
     remove_cart.src = ""
@@ -88,7 +89,8 @@ product = (name, price, category) => {
     confirm_button.style.display = "block"
 
     const key = name;
-    if(cart[key].count === 1){ //item goes 1st time inside cart
+
+    if(cart[key].count === 1 && !check.includes(key)){ //item goes 1st time inside cart
       const cart_name = document.getElementById("cart_item_name")
       const item_name = document.createElement("strong")
       item_name.innerHTML = key
@@ -113,6 +115,7 @@ product = (name, price, category) => {
       item_total.appendChild(item_tot)
 
     } else{
+      check.push(key)
       const quantity = document.getElementById(`quan-${key}`)
       quantity.innerHTML = cart[key].count
 
