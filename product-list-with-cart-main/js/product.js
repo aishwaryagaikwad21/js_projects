@@ -11,8 +11,31 @@ fetch('./data.json')
 
 let cart = {}
 
-const clearItem = (key, category,btn) => {
+initialItem = (key, price, category) => {
+  let btn = document.getElementById(`btn-${category.toLowerCase().replaceAll(" ", "-")}`)
+  console.log("count is 1")
+  btn.addEventListener("click", () =>{
+    clearItem(key, price, category);
+  })
+}
+
+ clearItem = (key, price, category) => {
+  console.log(key, price, category)
   cart[key].count = 0;
+  const img = document.getElementById(`img-${category.toLowerCase().replaceAll(" ", "-")}`);
+  img.style.border = "";
+
+  const btn = document.getElementById(`btn-${category.toLowerCase().replaceAll(" ", "-")}`)
+  const newBtn = document.createElement("button")
+  newBtn.className = "btn";
+  newBtn.id = `btn-${category.toLowerCase().replaceAll(" ", "-")}`;
+  newBtn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
+  btn.parentNode.replaceChild(newBtn, btn);
+  btn.remove()
+  newBtn.addEventListener("click", () => {
+    product(key, price, category);
+  });
+
 }
 
 product = (name, price, category) => {
@@ -31,8 +54,8 @@ product = (name, price, category) => {
     cart[key].price += price;
   }
 
-  console.log(`${key} clicked ${cart[key].count} times`)
-  console.log(`total price of ${key}: $${cart[key].price.toFixed(2)}`);
+  //console.log(`${key} clicked ${cart[key].count} times`)
+  //console.log(`total price of ${key}: $${cart[key].price.toFixed(2)}`);
   //console.log(cart)
   
   let img = document.getElementById(`img-${category.toLowerCase().replaceAll(" ", "-")}`)
@@ -60,9 +83,9 @@ product = (name, price, category) => {
       cart[key].count--;
       cart[key].price -= price;
       count.innerText = cart[key].count;
-      console.log(`${key} count: ${cart[key].count}, total: $${cart[key].price.toFixed(2)}`);
-    } else{
-      clearItem(key, category,btn);
+      //console.log(`${key} count: ${cart[key].count}, total: $${cart[key].price.toFixed(2)}`);
+    } else {
+      initialItem(key, price, category);
     }
   })
   const increment = document.createElement("button");
@@ -78,6 +101,11 @@ product = (name, price, category) => {
   quantityControls.appendChild(decrement);
   quantityControls.appendChild(count);
   quantityControls.appendChild(increment)
+
+  const oldQuantityControls = btn.querySelector(".quantityControls");
+if (oldQuantityControls) {
+  btn.removeChild(oldQuantityControls);
+}
 
   btn.appendChild(quantityControls);
 
@@ -140,8 +168,6 @@ const check = []
       hr.className = "hr"
       itemDeets.appendChild(hr)
 
-      
-
     } else{
       check.push(key)
       
@@ -155,11 +181,11 @@ const check = []
 
     //Cart container
     const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
-    console.log(`Total items: ${totalItems}`);
+    //console.log(`Total items: ${totalItems}`);
     document.getElementById("totalItems").innerText = totalItems;
 
     const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
-    console.log(`Amount: $${totalAmount}`)
+    //console.log(`Amount: $${totalAmount}`)
     document.getElementById("order_total").innerHTML = `Order Total <strong>$${totalAmount.toFixed(2)}</strong>`
 }
 
@@ -177,6 +203,7 @@ renderProducts = (data) => {
    data.forEach(element => {
         const card = document.createElement("div");
         card.className = "card"
+        card.id = `card-${element.category.toLowerCase().replaceAll(" ", "-")}`; // "Strawberry Cake --> card-strawberry-cake"
         //console.log(element.name)
         const image_wrapper = document.createElement("div");
         image_wrapper.className = "image_wrapper"
