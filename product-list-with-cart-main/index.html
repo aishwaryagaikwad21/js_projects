@@ -11,32 +11,31 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+  <h1>Desserts</h1>
   <div id="container">
-    <h1>Desserts</h1>
+    
     <div id="deserts"></div>
-    
-    
+  
     <div id="your_cart">
       <h2 id="cart_items">Your Cart (<span id="totalItems">0</span>)</h2>
       <img id="empty_cart" src="./assets/images/illustration-empty-cart.svg" alt="">
       <div class="cart_li" id="cart_li">
-        <div class="cart_deets" id="cart_deets"></div>
-          <div class="cart_item_name" id="cart_item_name"></div>
+        <div class="cart_deets" id="cart_deets">
+          <!-- <div class="cart_item_name" id="cart_item_name"></div> -->
           <div class="item_deets" id="item_deets">
-            <p id="item_quant"></p>
-            <p id="item_price"></p>
-            <p id="item_total"></p>
+           
           </div>
-        <div class="remove" id="remove">
-          <button id="remove_btn"></button>
+          <div class="remove" id="remove">
+            <button id="remove_btn"></button>
+          </div>
         </div>
-        <div class="order_total"></div>
+        <div class="order_total" id="order_total"></div>
         <div class="carbon_neutral" id="carbon_neutral">
           <img src="./assets/images/icon-carbon-neutral.svg" alt="">
           <p>This is <span>carbon-neutral</span> delivery </p>
         </div>
-        <div class="confirm_button" id="confirm_button">
-          <button>Confirm Order</button>
+        <div id="confirm_button">
+          <button class="confirm_button"><p>Confirm Order</p></button>
         </div>
       </div>
     </div>

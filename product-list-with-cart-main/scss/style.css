@@ -4,19 +4,16 @@ body {
 }
 body #container {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 3rem;
-  padding: 2rem 4rem;
-  align-items: start;
+  grid-template-columns: 1fr 3fr;
 }
 body #container #deserts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  gap: 1px;
 }
 body #container #deserts .card {
   padding: 1rem;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 body #container #deserts .card .image_wrapper {
   position: relative;
@@ -97,104 +94,6 @@ body #container #deserts .card .deets .price {
   font-weight: bold;
   color: hsl(14, 86%, 42%);
   margin-top: 0.25rem;
-}
-
-#your_cart {
-  background-color: white;
-  border-radius: 15px;
-  padding: 2rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-#your_cart h2 {
-  color: hsl(14, 86%, 42%);
-}
-
-.item_deets {
-  display: flex;
-  flex-direction: column;
-}
-.item_deets [id^=quan-] {
-  font-weight: bold;
-  color: hsl(14, 86%, 42%);
-  margin-bottom: 0.5rem;
-}
-.item_deets .second_row {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-.item_deets .second_row .p {
-  padding-top: -12px;
-}
-.item_deets .second_row .item_p {
-  color: hsl(14, 25%, 72%);
-}
-.item_deets .second_row .item_tot {
-  color: hsl(12, 20%, 44%);
-}
-.item_deets hr {
-  border: none;
-  height: 1px;
-  background-color: hsl(13, 31%, 94%);
-  margin: 1rem 0;
-  margin-top: 0.09rem;
-}
-
-.carbon_neutral {
-  margin-top: 20px;
-  background-color: hsl(13, 31%, 94%);
-  padding: 10px 55px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-}
-.carbon_neutral img {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
-}
-.carbon_neutral p {
-  display: inline-block;
-  margin: 0;
-  margin-top: -5px;
-}
-
-.order_total {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: hsl(12, 20%, 44%);
-}
-.order_total strong {
-  font-size: 25px;
-  font-weight: bold;
-  text-align: right;
-  color: black;
-}
-
-.confirm_button {
-  background-color: hsl(14, 86%, 42%);
-  color: hsl(13, 31%, 94%);
-  padding: 8px 25px;
-  border: 1px solid hsl(12, 20%, 44%);
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 999px;
-  width: 350px;
-  height: 50px;
-  cursor: pointer;
-  font-weight: bold;
-}
-.confirm_button:hover {
-  background-color: hsl(14, 94%, 28%);
 }
 
 /*# sourceMappingURL=style.css.map */

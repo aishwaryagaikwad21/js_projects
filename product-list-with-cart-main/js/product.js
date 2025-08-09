@@ -90,37 +90,52 @@ const check = []
 
     const key = name;
 
-    if(cart[key].count === 1 && !check.includes(key)){ //item goes 1st time inside cart
-      const cart_name = document.getElementById("cart_item_name")
-      const item_name = document.createElement("strong")
-      item_name.innerHTML = key
-      cart_name.appendChild(item_name)
+    const itemDeets = document.getElementById("item_deets")
 
-      const item_quant = document.getElementById("item_quant")
+    if(cart[key].count === 1 && !check.includes(key)){ //item goes 1st time inside cart
+      
+      const cart_name = document.createElement("strong")
+      cart_name.id = `cart_item_${key}`
+      
+      cart_name.innerHTML = key
+      itemDeets.appendChild(cart_name)
+
+      const second_row = document.createElement("div")
+      second_row.className = "second_row"
+
       const quantity = document.createElement("strong")
       quantity.id = `quan-${key}`
-      quantity.innerHTML = cart[key].count
-      item_quant.appendChild(quantity)
+      quantity.innerHTML = `${cart[key].count}x`
+      second_row.appendChild(quantity)
 
-      const item_price = document.getElementById("item_price")
       const item_p = document.createElement("p")
       item_p.id = `item-p-${key}`
-      item_p.innerHTML = cart[key].price
-      item_price.appendChild(item_p)
+      item_p.className = "item_p"
+      item_p.innerHTML = `@ $${cart[key].price.toFixed(2)}`
+      second_row.appendChild(item_p)
 
-      const item_total = document.getElementById("item_total")
       const item_tot = document.createElement("p")
       item_tot.id = `item-tot-${key}`
-      item_tot.innerHTML = (cart[key].count) * Number(cart[key].unitPrice)
-      item_total.appendChild(item_tot)
+      item_tot.className = "item_tot"
+      tot_calculation = ((cart[key].count) * Number(cart[key].unitPrice))
+      item_tot.innerHTML = `$ ${tot_calculation.toFixed(2)}`
+      second_row.appendChild(item_tot)
+
+      itemDeets.appendChild(second_row)
+
+      const hr = document.createElement("hr")
+      hr.className = "hr"
+      itemDeets.appendChild(hr)
 
     } else{
       check.push(key)
+      
       const quantity = document.getElementById(`quan-${key}`)
-      quantity.innerHTML = cart[key].count
-
+      quantity.innerHTML = `${cart[key].count}x`
+      
       const item_tot = document.getElementById(`item-tot-${key}`)
-      item_tot.innerHTML = Number(cart[key].count) * Number(cart[key].unitPrice)
+      tot_calculation = ((cart[key].count) * Number(cart[key].unitPrice))
+     item_tot.innerHTML = `$${tot_calculation.toFixed(2)}`
     }
 
     //Cart container
@@ -130,6 +145,7 @@ const check = []
 
     const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
     console.log(`Amount: $${totalAmount}`)
+    document.getElementById("order_total").innerHTML = `Order Total <strong>$${totalAmount.toFixed(2)}</strong>`
 }
 
 
@@ -142,6 +158,9 @@ renderProducts = (data) => {
 
     const confirm_button = document.getElementById("confirm_button")
     confirm_button.style.display = "none"
+
+    const remove_btn = document.getElementById("remove")
+    remove_btn.style.display = "none"
 
    data.forEach(element => {
         const card = document.createElement("div");

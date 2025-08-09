@@ -3,28 +3,27 @@ $primary-color: hsl(14, 86%, 42%);
 $font-size: 16px;
 $background_colour: hsl(13, 31%, 94%);
 $category_colour: hsl(14, 25%, 72%);
+$font_family: 'Red Hat Text', sans-serif;
 
 body {
-  font-family: 'Red Hat Text';
+  font-family: $font_family;
   background-color: $background_colour;
 
   #container{
-    
-    #your_cart{
-        #cart_items{
-            color:$primary-color;
-        }
-    }
-  }
+    display: grid;
+    grid-template-columns: 2fr 1fr; // sidebar and main content
+    gap: 3rem;               
+    padding: 2rem 4rem; //overall page    
+    align-items: start; 
 
   #deserts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1px; 
+    gap: 2rem;
 
   .card {
     padding: 1rem;
-    border-radius: 5px;
+    border-radius: 15px;
 
     .image_wrapper{
         position:relative;
@@ -57,7 +56,6 @@ body {
                 border-color: $primary-color;
                 color:$primary-color;
             }
-            
 
            .quantityControls {
                 display: flex;
@@ -112,9 +110,120 @@ body {
             color: $primary-color;
             margin-top: 0.25rem;    // small gap above price
         }
+      }
     }
+   }
+
   }
 }
+
+
+#your_cart{
+        //background-color: black;
+        //margin-left: 70px;
+        background-color: white;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        h2{
+            color: $primary-color;
+        }
+   }
+
+.item_deets{
+    display: flex;
+    flex-direction: column;
+
+   [id^="quan-"]{ //^= starts with quan-1, quan-2, etc.
+        font-weight: bold;
+        color: $primary-color;
+        margin-bottom: 0.5rem;  
+   }
+
+   .second_row {
+        display: flex;
+        //justify-content: space-between;
+        flex-direction: row;
+        gap: 1rem;
+        align-items: center;
+        margin-bottom: 0.5rem; // space below
+       
+        .p{
+            padding-top: -12px;
+        }
+        .item_p{
+            color: hsl(14, 25%, 72%);
+        }
+        .item_tot{
+            color: hsl(12, 20%, 44%);
+        }
+    }
+
+    hr{
+        border: none;          // remove default border
+        height: 1px;           // line thickness
+        background-color: hsl(13, 31%, 94%);  // line color
+        margin: 1rem 0;        // vertical spacing
+        margin-top: 0.09rem;
+    }
 }
 
+.carbon_neutral {
+  margin-top: 20px;
+  background-color: hsl(13, 31%, 94%);
+  padding: 10px 55px;
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  border-radius: 10px;  
+    img {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+    }
+  p {
+    display: inline-block;
+    margin: 0;
+    margin-top: -5px;
+  }
+}
+
+.order_total{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    color: hsl(12, 20%, 44%);  
+    strong{
+        font-size: 25px;
+        font-weight: bold;
+        //display: block;        // take full width
+        text-align: right;
+        color:black ;
+    }
+}
+
+.confirm_button{
+   background-color: $primary-color;
+  color: hsl(13, 31%, 94%);
+  padding: 8px 25px;
+  border: 1px solid hsl(12, 20%, 44%);
+  margin-top: 20px;
+
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+
+  gap: 0.5rem;
+  border-radius: 999px;
+  width: 350px;  
+  height: 50px;   
+  cursor: pointer; 
+
+  font-weight: bold;
+  &:hover {
+    background-color: hsl(14, 94%, 28%);
+  }
+}
 
