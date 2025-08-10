@@ -13,21 +13,23 @@ let cart = {}
 const check = []
 
 clearCartUI = (key, price, category) => {
-  const cart_name = document.getElementById(`cart_item_${key}`);
+  console.log(key,cart[key])
+  const cart_name = document.getElementById(`cart_item_${key.toLowerCase().replaceAll(" ", "-")}`);
   if (cart_name) cart_name.remove();
 
-  const second_row = document.getElementById(`second_row-${key}`);
+  const second_row = document.getElementById(`second_row-${key.toLowerCase().replaceAll(" ", "-")}`);
   if (second_row) second_row.remove();
 
-  const hr = document.getElementById(`hr-${key}`);
+  const hr = document.getElementById(`hr-${key.toLowerCase().replaceAll(" ", "-")}`);
   if (hr) hr.remove();
 
-  console.log(check)
+  //console.log(check)
   const index = check.indexOf(key);
   if (index > -1) {
     check.splice(index, 1);
   }
-  console.log(check)
+  //console.log(check)
+  //console.log(cart[key])
   //Cart container
     const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
     //console.log(`Total items: ${totalItems}`);
@@ -40,26 +42,29 @@ clearCartUI = (key, price, category) => {
 
 initialItem = (key, price, category) => {
   let btn = document.getElementById(`btn-${category.toLowerCase().replaceAll(" ", "-")}`)
-  console.log(key, cart[key].count);
+  //console.log(key, cart[key].count);
   // Clone the button to remove all old event listeners
   let newBtn = btn.cloneNode(true);
   btn.parentNode.replaceChild(newBtn, btn);
   //console.log("count is 1")
+  console.log(key, cart[key].count)
+  console.log(cart[key])
   btn.addEventListener("click", () =>{
     clearItem(key, price, category);
+    clearCartUI(key, price, category);
   })
 }
 
 clearItem = (key, price, category) => {
-  console.log(key, cart[key].count)
+  //console.log(key, cart[key].count)
   //console.log(key, price, category)
   cart[key].count = 0;
-  console.log(key,cart[key].count)
+  //console.log(key,cart[key].count)
 
   cart[key].price = 0;
   price = cart[key].price;
-  console.log(price)
-
+  //console.log(price)
+  console.log(cart[key])
   const img = document.getElementById(`img-${category.toLowerCase().replaceAll(" ", "-")}`);
   img.style.border = "";
 
@@ -69,7 +74,7 @@ clearItem = (key, price, category) => {
   newBtn.id = `btn-${category.toLowerCase().replaceAll(" ", "-")}`;
   newBtn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
   newBtn.addEventListener("click", () => {
-    console.log("New button clicked")
+    //console.log("New button clicked")
     product(key, price, category);
     //updateCartUI(key, price, category);
   });
@@ -90,7 +95,7 @@ product = (name, price, category) => {
   }
 
   if(cart[key].count === 0){
-    console.log("Hello there")
+    //console.log("Hello there")
     cart[key].count += 1;
     cart[key].price += price;
   }
@@ -123,6 +128,7 @@ product = (name, price, category) => {
       //console.log(`${key} count: ${cart[key].count}, total: $${cart[key].price.toFixed(2)}`);
     } else {
       console.log(key, cart[key].count)
+      console.log(cart[key])
       initialItem(key, price, category);
     }
   })
@@ -166,31 +172,31 @@ product = (name, price, category) => {
     
 
     if(cart[key].count === 1 && !check.includes(key)){ //item goes 1st time inside cart
-      console.log(`${key}, ${cart[key].count} - 1st time inside cart`)
+      //console.log(`${key}, ${cart[key].count} - 1st time inside cart`)
       const cart_name = document.createElement("strong")
-      cart_name.id = `cart_item_${key}`
+      cart_name.id = `cart_item_${key.toLowerCase().replaceAll(" ", "-")}`
       
       cart_name.innerHTML = key
       itemDeets.appendChild(cart_name)
 
       const second_row = document.createElement("div")
       second_row.className = "second_row"
-      second_row.id = `second_row-${key}`
+      second_row.id = `second_row-${key.toLowerCase().replaceAll(" ", "-")}`
 
       const quantity = document.createElement("strong")
-      quantity.id = `quan-${key}`
+      quantity.id = `quan-${key.toLowerCase().replaceAll(" ", "-")}`
       quantity.innerHTML = `${cart[key].count}x`
       second_row.appendChild(quantity)
 
       const item_p = document.createElement("p")
-      item_p.id = `item-p-${key}`
+      item_p.id = `item-p-${key.toLowerCase().replaceAll(" ", "-")}`
       item_p.className = "item_p"
       item_p.innerHTML = `@ $${cart[key].price.toFixed(2)}`
       second_row.appendChild(item_p)
 
 
       const item_tot = document.createElement("p")
-      item_tot.id = `item-tot-${key}`
+      item_tot.id = `item-tot-${key.toLowerCase().replaceAll(" ", "-")}`
       item_tot.className = "item_tot"
       tot_calculation = ((cart[key].count) * Number(cart[key].unitPrice))
       item_tot.innerHTML = `$ ${tot_calculation.toFixed(2)}`
@@ -198,7 +204,7 @@ product = (name, price, category) => {
 
 
       const remove_button = document.createElement("button")
-      remove_button.id = `remove_btn-${key}`
+      remove_button.id = `remove_btn-${key.toLowerCase().replaceAll(" ", "-")}`
       remove_button.innerHTML = `<img src="./assets/images/icon-remove-item.svg" alt="remove item">`
       remove_button.addEventListener("click", () => {
         clearItem(key, price, category)
@@ -211,7 +217,7 @@ product = (name, price, category) => {
 
       const hr = document.createElement("hr")
       hr.className = "hr"
-      hr.id = `hr-${key}`
+      hr.id = `hr-${key.toLowerCase().replaceAll(" ", "-")}`
       itemDeets.appendChild(hr)
 
       const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
@@ -220,16 +226,16 @@ product = (name, price, category) => {
 
     cart[key].price = tot_calculation;
     const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
-    console.log(`Amount: $${totalAmount}`)
+    //console.log(`Amount: $${totalAmount}`)
     document.getElementById("order_total").innerHTML = `Order Total <strong>$${totalAmount.toFixed(2)}</strong>`
 
     } else {
       if(!check.includes(key)){
         check.push(key)
       }
-      console.log(`${key}, ${cart[key].count} - already inside cart`)
-     const quantity = document.getElementById(`quan-${key}`)
-     const item_tot = document.getElementById(`item-tot-${key}`)
+      //console.log(`${key}, ${cart[key].count} - already inside cart`)
+     const quantity = document.getElementById(`quan-${key.toLowerCase().replaceAll(" ", "-")}`)
+     const item_tot = document.getElementById(`item-tot-${key.toLowerCase().replaceAll(" ", "-")}`)
      
         quantity.innerHTML = `${cart[key].count}x`
         tot_calculation = cart[key].count * Number(cart[key].unitPrice);
@@ -244,6 +250,7 @@ product = (name, price, category) => {
 
     const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
     //console.log(`Amount: $${totalAmount}`)
+    //console.log(cart[key])
     document.getElementById("order_total").innerHTML = `Order Total <strong>$${totalAmount.toFixed(2)}</strong>`
 }
 
