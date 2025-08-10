@@ -30,7 +30,7 @@
 - ![Confirm order](./confirm_order.png)
 
 
-## 👨‍💻 Author
+## 👩‍💻 Author
 - **Aishwarya Gaikwad**
 - 🐙 GitHub: [@aishwaryagaikwad21](https://github.com/aishwaryagaikwad21)
 
