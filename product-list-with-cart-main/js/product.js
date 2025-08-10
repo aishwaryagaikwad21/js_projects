@@ -3,7 +3,6 @@ let productData = [];
 fetch('./data.json')
   .then(response => response.json())
   .then(data => {
-    //console.log(data); 
     productData = data
     renderProducts(productData);
   })
@@ -13,7 +12,6 @@ let cart = {}
 const check = []
 
 clearCartUI = (key, price, category) => {
-  //console.log(key,cart[key])
   const cart_name = document.getElementById(`cart_item_${key.toLowerCase().replaceAll(" ", "-")}`);
   if (cart_name) cart_name.remove();
 
@@ -23,13 +21,11 @@ clearCartUI = (key, price, category) => {
   const hr = document.getElementById(`hr-${key.toLowerCase().replaceAll(" ", "-")}`);
   if (hr) hr.remove();
 
-  //console.log(check)
   const index = check.indexOf(key);
   if (index > -1) {
     check.splice(index, 1);
   }
-  //console.log(check)
-  //console.log(cart[key])
+
 
   //empty cart
   const check_length = check.length;
@@ -46,23 +42,18 @@ clearCartUI = (key, price, category) => {
 
   //Cart container
     const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
-    //console.log(`Total items: ${totalItems}`);
     document.getElementById("totalItems").innerText = totalItems;
 
     const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
-    //console.log(`Amount: $${totalAmount}`)
     document.getElementById("order_total").innerHTML = `Order Total <strong>$${totalAmount.toFixed(2)}</strong>`
 }
 
 initialItem = (key, price, category) => {
   let btn = document.getElementById(`btn-${category.toLowerCase().replaceAll(" ", "-")}`)
-  //console.log(key, cart[key].count);
+
   // Clone the button to remove all old event listeners
   let newBtn = btn.cloneNode(true);
   btn.parentNode.replaceChild(newBtn, btn);
-  //console.log("count is 1")
-  //console.log(key, cart[key].count)
-  //console.log(cart[key])
   btn.addEventListener("click", () =>{
     clearItem(key, price, category);
     clearCartUI(key, price, category);
@@ -70,15 +61,10 @@ initialItem = (key, price, category) => {
 }
 
 clearItem = (key, price, category) => {
-  //console.log(key, cart[key].count)
-  //console.log(key, price, category)
   cart[key].count = 0;
-  //console.log(key,cart[key].count)
-
   cart[key].price = 0;
   price = cart[key].price;
-  //console.log(price)
-  //console.log(cart[key])
+  
   const img = document.getElementById(`img-${category.toLowerCase().replaceAll(" ", "-")}`);
   img.style.border = "";
 
@@ -88,9 +74,7 @@ clearItem = (key, price, category) => {
   newBtn.id = `btn-${category.toLowerCase().replaceAll(" ", "-")}`;
   newBtn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
   newBtn.addEventListener("click", () => {
-    //console.log("New button clicked")
     product(key, price, category);
-    //updateCartUI(key, price, category);
   });
   btn.parentNode.replaceChild(newBtn, btn);
   btn.remove()
@@ -109,7 +93,6 @@ product = (name, price, category) => {
   }
 
   if(cart[key].count === 0){
-    //console.log("Hello there")
     cart[key].count += 1;
     cart[key].price += price;
   }
@@ -139,17 +122,13 @@ product = (name, price, category) => {
       cart[key].count--;
       cart[key].price -= price;
       count.innerText = cart[key].count;
-      //console.log(`${key} count: ${cart[key].count}, total: $${cart[key].price.toFixed(2)}`);
     } else {
-      //console.log(key, cart[key].count)
-      //console.log(cart[key])
       initialItem(key, price, category);
     }
   })
   const increment = document.createElement("button");
   increment.className = "increment"
   increment.innerHTML = `<img src='./assets/images/icon-increment-quantity.svg' alt='increment'>`
-  // btn.appendChild(increment)
   increment.addEventListener("click", () => {
     cart[key].count += 1;
     cart[key].price += price;
@@ -184,10 +163,8 @@ product = (name, price, category) => {
     const itemDeets = document.getElementById("item_deets")
 
     if(cart[key].count === 1 && !check.includes(key)){ //item goes 1st time inside cart
-      //console.log(`${key}, ${cart[key].count} - 1st time inside cart`)
       if(!check.includes(key)){
         check.push(key)
-        //console.log(check)
       }
       const cart_name = document.createElement("strong")
       cart_name.id = `cart_item_${key.toLowerCase().replaceAll(" ", "-")}`
@@ -237,21 +214,18 @@ product = (name, price, category) => {
       itemDeets.appendChild(hr)
 
       const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
-    //console.log(`Total items: ${totalItems}`);
     document.getElementById("totalItems").innerText = totalItems;
 
     cart[key].price = tot_calculation;
     const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
-    //console.log(`Amount: $${totalAmount}`)
     
     document.getElementById("order_total").innerHTML = `Order Total <strong>$${totalAmount.toFixed(2)}</strong>`
 
     } else {
       if(!check.includes(key)){
         check.push(key)
-        //console.log(check)
       }
-      //console.log(`${key}, ${cart[key].count} - already inside cart`)
+  
      const quantity = document.getElementById(`quan-${key.toLowerCase().replaceAll(" ", "-")}`)
      const item_tot = document.getElementById(`item-tot-${key.toLowerCase().replaceAll(" ", "-")}`)
      
@@ -263,12 +237,9 @@ product = (name, price, category) => {
     }
     //Cart container
     const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
-    //console.log(`Total items: ${totalItems}`);
     document.getElementById("totalItems").innerText = totalItems;
 
     const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
-    //console.log(`Amount: $${totalAmount}`)
-    //console.log(cart[key])
     document.getElementById("order_total").innerHTML = `Order Total <strong>$${totalAmount.toFixed(2)}</strong>`
 }
 
@@ -289,8 +260,7 @@ renderProducts = (data) => {
    data.forEach(element => {
         const card = document.createElement("div");
         card.className = "card"
-        card.id = `card-${element.category.toLowerCase().replaceAll(" ", "-")}`; // "Strawberry Cake --> card-strawberry-cake"
-        //console.log(element.name)
+        card.id = `card-${element.category.toLowerCase().replaceAll(" ", "-")}`;
         const image_wrapper = document.createElement("div");
         image_wrapper.className = "image_wrapper"
         image_wrapper.id = `image_wrapper-${element.category.toLowerCase().replaceAll(" ", "-")}`
@@ -305,12 +275,11 @@ renderProducts = (data) => {
 
         const btn = document.createElement("button")
         btn.className = "btn"
-        btn.id = `btn-${element.category.toLowerCase().replaceAll(" ", "-")}`; // "Strawberry Cake --> btn-strawberry-cake"
+        btn.id = `btn-${element.category.toLowerCase().replaceAll(" ", "-")}`;
         btn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
         image_wrapper.appendChild(btn)
         btn.addEventListener(("click"), ()=> {
           product(element.name, element.price,element.category)
-          //updateCartUI(element.name, element.price, element.category)
         })
 
         card.appendChild(image_wrapper)
@@ -322,13 +291,11 @@ renderProducts = (data) => {
         category.className = "category"
         category.innerHTML = element.category
         deets.appendChild(category)
-        // card.appendChild(category)
 
         const name = document.createElement("h4");
         name.className = "name"
         name.innerHTML = element.name
         deets.appendChild(name)
-        // card.appendChild(name)
 
         const price = document.createElement("strong");
         price.className = "price"
@@ -349,12 +316,10 @@ final = () => {
   document.getElementById("confirm_card").classList.remove("hidden");
   const confirm_order = document.getElementById("confirm")
   confirm_order.style.display = "block"
-  //confirm_order.scrollIntoView({ behavior: "smooth" });
-
+ 
   fetch('./data.json')
   .then(response => response.json())
   .then(data => {
-    //console.log(data); 
     productData = data
     confirm(productData)
   })
@@ -364,10 +329,7 @@ final = () => {
 }
 
 confirm = (data) => {
-  //console.log(cart)
-
   const order_details = document.getElementById("order_details")
-  console.log(cart)
   for(let key in cart){
     if(cart[key].count !== 0){
 
@@ -384,7 +346,6 @@ confirm = (data) => {
           image.id = `c_img-${key.toLowerCase().replaceAll(" ", "-")}`;
           image.src = element.image.thumbnail
           c_info.appendChild(image)
-          //order_details.appendChild(c_info)
 
           const c2_info = document.createElement("div")
           c2_info.className = "c2_info"

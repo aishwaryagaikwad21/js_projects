@@ -12,14 +12,23 @@ body {
   #container{
     display: grid;
     grid-template-columns: 2fr 1fr; // sidebar and main content
-    gap: 3rem;               
+    gap: 0.7rem;               
     padding: 2rem 4rem; //overall page    
-    align-items: start; 
+    align-items: start;
+    
+    @media (max-width: 1000px) {
+        grid-template-columns: 1fr; // single column layout
+        padding: 1rem; // reduce padding for smaller screens
+    }
+    @media (max-width: 704px) {
+        grid-template-columns: 1fr; 
+        padding: 1rem; 
+    }
 
   #deserts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    gap: 0.7rem;
 
   .card {
     padding: 1rem;
@@ -119,8 +128,6 @@ body {
 
 
 #your_cart{
-        //background-color: black;
-        //margin-left: 70px;
         background-color: white;
         border-radius: 15px;
         padding: 2rem;
@@ -128,7 +135,7 @@ body {
         h2{
             color: $primary-color;
         }
-        width: 90%;
+        width: 80%;
    }
 
 .item_deets{
@@ -143,7 +150,6 @@ body {
 
    .second_row {
         display: flex;
-        //justify-content: space-between;
         flex-direction: row;
         gap: 1rem;
         align-items: center;
@@ -170,9 +176,9 @@ body {
     }
 
     hr{
-        border: none;          // remove default border
-        height: 1px;           // line thickness
-        background-color: hsl(13, 31%, 94%);  // line color
+        border: none;          
+        height: 1px;          
+        background-color: hsl(13, 31%, 94%); 
         margin: 1rem 0;        // vertical spacing
         margin-top: 0.09rem;
     }
@@ -208,7 +214,7 @@ body {
     strong{
         font-size: 25px;
         font-weight: bold;
-        //display: block;        // take full width
+        //display: block;       
         text-align: right;
         color:black ;
     }
@@ -289,10 +295,6 @@ body {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            // margin-bottom: 1rem;
-            // display: grid;
-            // grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-            // gap: 10px;
 
             img.c_image{
                 width: 50px;
@@ -301,7 +303,7 @@ body {
                 object-fit: cover;
                 margin-right: 0.75rem;
                 flex-shrink: 0;
-                //background-color: indigo;
+               
             }
 
             .c2_info{ //cartname, quantity and unit price container
@@ -309,18 +311,13 @@ body {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                //background-color: red;
-                //align-items: center;
-                //background-color: red;
-
+               
                 .c_cart_item {
                     font-weight: 700;
                     color: hsl(14, 65%, 9%);
                     font-size: 0.95rem;
                     margin-bottom: 0.1rem;
-                    //background-color: green;
-                    margin-left: -50px;
-                    //padding-right: 0px;
+                    margin-left: -40px;
                 }
 
                 
@@ -329,18 +326,14 @@ body {
                     color: black;
                     font-size: 0.95rem;
                     margin-bottom: 0.2rem;
-                   //background-color: green;
                 }
                 .second_row{ //quantity and Unit Price
                     display: flex;
                     align-items: center;
-                    // flex-direction: row;
-                    // justify-content: space-between;
                     gap: 0.5rem;
                     font-size: 0.85rem;
 
                     .quan_class{
-                    //background-color: red;
                       color: $primary-color;
                     margin-right: 0.5rem;
                     font-weight: bold;  
@@ -353,7 +346,6 @@ body {
             .item_tot{// c3 container
                 color: black;
                 font-weight:600;
-                //background-color: royalblue;
                 font-size: 0.95rem;
                 margin-left: 0.75rem;
                 flex-shrink: 0; // keeps price compact
