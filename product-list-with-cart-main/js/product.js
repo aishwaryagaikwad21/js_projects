@@ -346,9 +346,10 @@ final = () => {
   document.getElementById("confirm_btn").disabled = true;
   document.getElementById("confirm_btn").style.backgroundColor = "grey"
 
+  document.getElementById("confirm_card").classList.remove("hidden");
   const confirm_order = document.getElementById("confirm")
   confirm_order.style.display = "block"
-  confirm_order.scrollIntoView({ behavior: "smooth" });
+  //confirm_order.scrollIntoView({ behavior: "smooth" });
 
   fetch('./data.json')
   .then(response => response.json())

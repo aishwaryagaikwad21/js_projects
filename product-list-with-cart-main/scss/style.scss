@@ -242,6 +242,7 @@ body {
     font-size: 1.1rem;
     font-weight: 500;
     display: flex;
+    align-items:center;
     justify-content: space-between;
     margin-top: 1rem;
 
@@ -282,45 +283,70 @@ body {
         margin-bottom: 1.5rem;
         display: flex;
         flex-direction: column;
-        gap: 20px; 
+        gap: 1rem; 
 
         .c_info{
-            // display: flex;
-            // align-items: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             // margin-bottom: 1rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-            gap: 10px;
+            // display: grid;
+            // grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+            // gap: 10px;
 
             img.c_image{
                 width: 50px;
                 height: 50px;
-                border-radius: 0.5rem;
+                border-radius: 0.3rem;
                 object-fit: cover;
-                margin-right: 1rem;
-                background-color: indigo;
+                margin-right: 0.75rem;
+                flex-shrink: 0;
+                //background-color: indigo;
             }
 
             .c2_info{ //cartname, quantity and unit price container
+                flex:1;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
+                justify-content: center;
                 //background-color: red;
+                //align-items: center;
+                //background-color: red;
+
+                .c_cart_item {
+                    font-weight: 700;
+                    color: hsl(14, 65%, 9%);
+                    font-size: 0.95rem;
+                    margin-bottom: 0.1rem;
+                    //background-color: green;
+                    margin-left: -50px;
+                    //padding-right: 0px;
+                }
+
                 
                 strong {//cart item name
                     font-weight: 600;
                     color: black;
+                    font-size: 0.95rem;
+                    margin-bottom: 0.2rem;
+                   //background-color: green;
                 }
                 .second_row{ //quantity and Unit Price
                     display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    font-size: 0.9rem;
+                    align-items: center;
+                    // flex-direction: row;
+                    // justify-content: space-between;
+                    gap: 0.5rem;
+                    font-size: 0.85rem;
 
                     .quan_class{
-                        //background-color: red;
+                    //background-color: red;
                       color: $primary-color;
-                    margin-right: 0.5rem;  
+                    margin-right: 0.5rem;
+                    font-weight: bold;  
+                    }
+                    .item_p{
+                        font-size: $font-size;
                     }
                 }
             }
@@ -328,9 +354,39 @@ body {
                 color: black;
                 font-weight:600;
                 //background-color: royalblue;
+                font-size: 0.95rem;
+                margin-left: 0.75rem;
+                flex-shrink: 0; // keeps price compact
             }
         }
     }
+}
+
+.confirm-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.confirm-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+}
+
+.hidden {
+  display: none;
 }
 
 
