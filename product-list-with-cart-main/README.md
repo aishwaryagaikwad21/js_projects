@@ -7,7 +7,7 @@
 ## Features
 - 🛒 Interactive Cart – Add or remove dessert items, and see totals update instantly.
 - 📊 Dynamic Pricing – Displays item quantity, unit price, and total order cost.
-✅ Order Confirmation – Smooth confirmation popup/alert with a "Start New Order" option.
+- ✅ Order Confirmation – Smooth confirmation popup/alert with a "Start New Order" option.
 - ⚡ Smooth Scrolling – Scrolls to the confirmation section upon placing an order.
 
 
