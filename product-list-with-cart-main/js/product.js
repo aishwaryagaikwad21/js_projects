@@ -209,6 +209,15 @@ product = (name, price, category) => {
       hr.id = `hr-${key}`
       itemDeets.appendChild(hr)
 
+      const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
+    //console.log(`Total items: ${totalItems}`);
+    document.getElementById("totalItems").innerText = totalItems;
+
+    cart[key].price = tot_calculation;
+    const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
+    console.log(`Amount: $${totalAmount}`)
+    document.getElementById("order_total").innerHTML = `Order Total <strong>$${totalAmount.toFixed(2)}</strong>`
+
     } else {
       if(!check.includes(key)){
         check.push(key)
@@ -216,11 +225,12 @@ product = (name, price, category) => {
       console.log(`${key}, ${cart[key].count} - already inside cart`)
      const quantity = document.getElementById(`quan-${key}`)
      const item_tot = document.getElementById(`item-tot-${key}`)
-      if(quantity && item_tot) {
+     
         quantity.innerHTML = `${cart[key].count}x`
         tot_calculation = cart[key].count * Number(cart[key].unitPrice);
+        cart[key].price = tot_calculation;
+        console.log(`Total calculation: $${tot_calculation.toFixed(2)}`)
         item_tot.innerHTML = `$${tot_calculation.toFixed(2)}`
-      }
     }
     //Cart container
     const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
