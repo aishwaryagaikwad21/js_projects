@@ -200,6 +200,11 @@ product = (name, price, category) => {
       const remove_button = document.createElement("button")
       remove_button.id = `remove_btn-${key}`
       remove_button.innerHTML = `<img src="./assets/images/icon-remove-item.svg" alt="remove item">`
+      remove_button.addEventListener("click", () => {
+        clearItem(key, price, category)
+        clearCartUI(key, price, category)
+      })
+
       second_row.appendChild(remove_button)
 
       itemDeets.appendChild(second_row)
