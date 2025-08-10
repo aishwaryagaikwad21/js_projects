@@ -38,11 +38,21 @@
           <p>This is <span>carbon-neutral</span> delivery </p>
         </div>
         <div id="confirm_button">
-          <button class="confirm_button"><p>Confirm Order</p></button>
+          <button class="confirm_button" id="confirm_btn" onclick="final()" ><p>Confirm Order</p></button>
         </div>
       </div>
     </div>
-  
+  </div>
+
+  <div class="confirm" id="confirm">
+    <img src="./assets/images/icon-order-confirmed.svg" alt="order-confirmed">
+    <h1>Order Confirmed</h1>
+    <p>We hope you enjoy your food!</p>
+    <div class="order_details" id="order_details">
+
+    </div>
+    <button class="confirm_button" id="new_order" onclick="newOrder()">Start New Order</button>
+    <div class="confirm_total" id="confirm_total"></div>
   </div>
 
   <script src="./js/product.js"></script>

@@ -283,6 +283,9 @@ renderProducts = (data) => {
     const confirm_button = document.getElementById("confirm_button")
     confirm_button.style.display = "none"
 
+    const confirm_order = document.getElementById("confirm")
+    confirm_order.style.display = "none"
+
    data.forEach(element => {
         const card = document.createElement("div");
         card.className = "card"
@@ -337,3 +340,85 @@ renderProducts = (data) => {
         deserts.appendChild(card)
    });
 }
+
+final = () => {
+  
+  document.getElementById("confirm_btn").disabled = true;
+  document.getElementById("confirm_btn").style.backgroundColor = "grey"
+
+  fetch('./data.json')
+  .then(response => response.json())
+  .then(data => {
+    //console.log(data); 
+    productData = data
+    confirm(productData)
+  })
+  .catch(error => console.error("Error loading JSON:", error));
+
+  
+}
+
+confirm = (data) => {
+  //console.log(cart)
+
+  const confirm_order = document.getElementById("confirm")
+  confirm_order.style.display = "block"
+
+  const order_details = document.getElementById("order_details")
+  
+  for(let key in cart){
+    
+    data.forEach(element => {
+      if(key === element.name){
+        
+        const image = document.createElement("img")
+        image.className = "c_image"
+        image.id = `c_img-${key.toLowerCase().replaceAll(" ", "-")}`;
+        image.src = element.image.thumbnail
+        order_details.appendChild(image)
+
+        const cart_name = document.createElement("strong")
+      cart_name.id = `c_cart_item_${key.toLowerCase().replaceAll(" ", "-")}`
+      
+      cart_name.innerHTML = key
+      order_details.appendChild(cart_name)
+
+      const second_row = document.createElement("div")
+      second_row.className = "second_row"
+      second_row.id = `c_second_row-${key.toLowerCase().replaceAll(" ", "-")}`
+
+      const quantity = document.createElement("strong")
+      quantity.id = `c_quan-${key.toLowerCase().replaceAll(" ", "-")}`
+      quantity.innerHTML = `${cart[key].count}x`
+      second_row.appendChild(quantity)
+
+      const item_p = document.createElement("p")
+      item_p.id = `c_item-p-${key.toLowerCase().replaceAll(" ", "-")}`
+      item_p.className = "item_p"
+      item_p.innerHTML = `@ $${cart[key].price.toFixed(2)}`
+      second_row.appendChild(item_p)
+
+
+      const item_tot = document.createElement("p")
+      item_tot.id = `c_item-tot-${key.toLowerCase().replaceAll(" ", "-")}`
+      item_tot.className = "item_tot"
+      tot_calculation = ((cart[key].count) * Number(cart[key].unitPrice))
+      item_tot.innerHTML = `$ ${tot_calculation.toFixed(2)}`
+      second_row.appendChild(item_tot)
+
+        order_details.appendChild(second_row)
+      }
+    })
+  }
+
+  const confirm_total = document.getElementById("confirm_total")
+  const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
+  confirm_total.innerHTML = `Order Total <strong>$${totalAmount.toFixed(2)}</strong>`
+
+}
+
+newOrder = ()=>{
+  location.reload();
+}
+
+
