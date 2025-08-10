@@ -3,7 +3,6 @@
 
 [🍰 Live Demo ] - https://dulcet-taiyaki-0f9be0.netlify.app/
 
----
 
 ## Features
 - 🛒 Interactive Cart – Add or remove dessert items, and see totals update instantly.
@@ -11,7 +10,6 @@
 ✅ Order Confirmation – Smooth confirmation popup/alert with a "Start New Order" option.
 - ⚡ Smooth Scrolling – Scrolls to the confirmation section upon placing an order.
 
----
 
 ## Tech Stack
 - HTML5
@@ -19,7 +17,6 @@
 - CSS3 – Styling and layout refinements.
 - JavaScript (Vanilla) – Asynchronous programming, DOM manipulation, and JSON handling.
 
----
 
 ## What I Learned
 - Loading and working with JSON data in a project.
@@ -27,13 +24,11 @@
 - Advanced DOM manipulation for dynamic updates.
 - Using Sass for cleaner, more reusable CSS.
 
----
 
 ## 🖼️ Screenshots 
 - ![Design preview for the Product list with cart coding challenge](./product_list_with_cart.png)
 - ![Confirm order](./confirm_order.png)
 
----
 
 ## 👨‍💻 Author
 - **Aishwarya Gaikwad**
