@@ -237,3 +237,101 @@ body {
   }
 }
 
+
+.confirm_total {
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    strong {
+      font-size: 1.25rem;
+      color: black;
+    }
+  }
+
+.confirm{
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+
+    img{
+        margin-bottom:1rem;
+    }
+    h1{
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+        color: hsl(14, 65%, 9%);
+    }
+    p{
+        color: hsl(12, 20%, 44%);
+        margin-bottom: 1.5rem;
+    }
+
+    .order_details{
+        background: hsl(20, 50%, 98%);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 20px; 
+
+        .c_info{
+            // display: flex;
+            // align-items: center;
+            // margin-bottom: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+            gap: 10px;
+
+            img.c_image{
+                width: 50px;
+                height: 50px;
+                border-radius: 0.5rem;
+                object-fit: cover;
+                margin-right: 1rem;
+                background-color: indigo;
+            }
+
+            .c2_info{ //cartname, quantity and unit price container
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                //background-color: red;
+                
+                strong {//cart item name
+                    font-weight: 600;
+                    color: black;
+                }
+                .second_row{ //quantity and Unit Price
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    font-size: 0.9rem;
+
+                    .quan_class{
+                        //background-color: red;
+                      color: $primary-color;
+                    margin-right: 0.5rem;  
+                    }
+                }
+            }
+            .item_tot{// c3 container
+                color: black;
+                font-weight:600;
+                //background-color: royalblue;
+            }
+        }
+    }
+}
+
+
+

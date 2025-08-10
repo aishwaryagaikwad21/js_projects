@@ -207,7 +207,7 @@ product = (name, price, category) => {
       const item_p = document.createElement("p")
       item_p.id = `item-p-${key.toLowerCase().replaceAll(" ", "-")}`
       item_p.className = "item_p"
-      item_p.innerHTML = `@ $${cart[key].price.toFixed(2)}`
+      item_p.innerHTML = `@ $${cart[key].unitPrice.toFixed(2)}`
       second_row.appendChild(item_p)
 
 
@@ -346,6 +346,10 @@ final = () => {
   document.getElementById("confirm_btn").disabled = true;
   document.getElementById("confirm_btn").style.backgroundColor = "grey"
 
+  const confirm_order = document.getElementById("confirm")
+  confirm_order.style.display = "block"
+  confirm_order.scrollIntoView({ behavior: "smooth" });
+
   fetch('./data.json')
   .then(response => response.json())
   .then(data => {
@@ -361,54 +365,64 @@ final = () => {
 confirm = (data) => {
   //console.log(cart)
 
-  const confirm_order = document.getElementById("confirm")
-  confirm_order.style.display = "block"
-
   const order_details = document.getElementById("order_details")
-  
+  console.log(cart)
   for(let key in cart){
-    
-    data.forEach(element => {
-      if(key === element.name){
+    if(cart[key].count !== 0){
+
+      data.forEach(element => {
+        if(key === element.name){
+          
+          const c_info = document.createElement("div")
+          c_info.className = "c_info"
+          c_info.id = `c_info-${key.toLowerCase().replaceAll(" ", "-")}`
+
+
+          const image = document.createElement("img")
+          image.className = "c_image"
+          image.id = `c_img-${key.toLowerCase().replaceAll(" ", "-")}`;
+          image.src = element.image.thumbnail
+          c_info.appendChild(image)
+          //order_details.appendChild(c_info)
+
+          const c2_info = document.createElement("div")
+          c2_info.className = "c2_info"
+          const cart_name = document.createElement("strong")
+          cart_name.className = "c_cart_item"
+          cart_name.id = `c_cart_item_${key.toLowerCase().replaceAll(" ", "-")}`
         
-        const image = document.createElement("img")
-        image.className = "c_image"
-        image.id = `c_img-${key.toLowerCase().replaceAll(" ", "-")}`;
-        image.src = element.image.thumbnail
-        order_details.appendChild(image)
+          cart_name.innerHTML = key
+          c2_info.appendChild(cart_name)
 
-        const cart_name = document.createElement("strong")
-      cart_name.id = `c_cart_item_${key.toLowerCase().replaceAll(" ", "-")}`
-      
-      cart_name.innerHTML = key
-      order_details.appendChild(cart_name)
+        const second_row = document.createElement("div")
+        second_row.className = "second_row"
+        second_row.id = `c_second_row-${key.toLowerCase().replaceAll(" ", "-")}`
+        const quantity = document.createElement("strong")
+        quantity.id = `c_quan-${key.toLowerCase().replaceAll(" ", "-")}`
+        quantity.className = "quan_class"
+        quantity.innerHTML = `${cart[key].count}x`
+        second_row.appendChild(quantity)
+        const item_p = document.createElement("p")
+        item_p.id = `c_item-p-${key.toLowerCase().replaceAll(" ", "-")}`
+        item_p.className = "item_p"
+        item_p.innerHTML = `@ $${cart[key].unitPrice.toFixed(2)}`
+        second_row.appendChild(item_p)
 
-      const second_row = document.createElement("div")
-      second_row.className = "second_row"
-      second_row.id = `c_second_row-${key.toLowerCase().replaceAll(" ", "-")}`
+        c2_info.appendChild(second_row)
+        c_info.appendChild(c2_info)
 
-      const quantity = document.createElement("strong")
-      quantity.id = `c_quan-${key.toLowerCase().replaceAll(" ", "-")}`
-      quantity.innerHTML = `${cart[key].count}x`
-      second_row.appendChild(quantity)
+          //c3 info
+        const item_tot = document.createElement("p")
+        item_tot.id = `c_item-tot-${key.toLowerCase().replaceAll(" ", "-")}`
+        item_tot.className = "item_tot"
+        tot_calculation = ((cart[key].count) * Number(cart[key].unitPrice))
+        item_tot.innerHTML = `$${tot_calculation.toFixed(2)}`
+        c_info.appendChild(item_tot)
 
-      const item_p = document.createElement("p")
-      item_p.id = `c_item-p-${key.toLowerCase().replaceAll(" ", "-")}`
-      item_p.className = "item_p"
-      item_p.innerHTML = `@ $${cart[key].price.toFixed(2)}`
-      second_row.appendChild(item_p)
-
-
-      const item_tot = document.createElement("p")
-      item_tot.id = `c_item-tot-${key.toLowerCase().replaceAll(" ", "-")}`
-      item_tot.className = "item_tot"
-      tot_calculation = ((cart[key].count) * Number(cart[key].unitPrice))
-      item_tot.innerHTML = `$ ${tot_calculation.toFixed(2)}`
-      second_row.appendChild(item_tot)
-
-        order_details.appendChild(second_row)
-      }
-    })
+          order_details.appendChild(c_info)
+        }
+      })
+  }
   }
 
   const confirm_total = document.getElementById("confirm_total")

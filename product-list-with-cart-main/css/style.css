@@ -207,4 +207,85 @@ body #container #deserts .card .deets .price {
   background-color: hsl(14, 94%, 28%);
 }
 
+.confirm_total {
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.confirm_total strong {
+  font-size: 1.25rem;
+  color: black;
+}
+
+.confirm {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+}
+.confirm img {
+  margin-bottom: 1rem;
+}
+.confirm h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: hsl(14, 65%, 9%);
+}
+.confirm p {
+  color: hsl(12, 20%, 44%);
+  margin-bottom: 1.5rem;
+}
+.confirm .order_details {
+  background: hsl(20, 50%, 98%);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.confirm .order_details .c_info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  gap: 10px;
+}
+.confirm .order_details .c_info img.c_image {
+  width: 50px;
+  height: 50px;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  margin-right: 1rem;
+  background-color: indigo;
+}
+.confirm .order_details .c_info .c2_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.confirm .order_details .c_info .c2_info strong {
+  font-weight: 600;
+  color: black;
+}
+.confirm .order_details .c_info .c2_info .second_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+.confirm .order_details .c_info .c2_info .second_row .quan_class {
+  color: hsl(14, 86%, 42%);
+  margin-right: 0.5rem;
+}
+.confirm .order_details .c_info .item_tot {
+  color: black;
+  font-weight: 600;
+}
+
 /*# sourceMappingURL=style.css.map */
