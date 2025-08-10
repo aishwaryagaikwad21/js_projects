@@ -13,7 +13,7 @@ let cart = {}
 const check = []
 
 clearCartUI = (key, price, category) => {
-  console.log(key,cart[key])
+  //console.log(key,cart[key])
   const cart_name = document.getElementById(`cart_item_${key.toLowerCase().replaceAll(" ", "-")}`);
   if (cart_name) cart_name.remove();
 
@@ -30,6 +30,20 @@ clearCartUI = (key, price, category) => {
   }
   //console.log(check)
   //console.log(cart[key])
+
+  //empty cart
+  const check_length = check.length;
+  if(check_length === 0){
+    const remove_cart = document.getElementById("empty_cart")
+    remove_cart.src = "./assets/images/illustration-empty-cart.svg"
+    
+    const carbon_neutral = document.getElementById("carbon_neutral")
+    carbon_neutral.style.display = "none"
+    
+    const confirm_button = document.getElementById("confirm_button")
+    confirm_button.style.display = "none"
+  }
+
   //Cart container
     const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
     //console.log(`Total items: ${totalItems}`);
@@ -47,8 +61,8 @@ initialItem = (key, price, category) => {
   let newBtn = btn.cloneNode(true);
   btn.parentNode.replaceChild(newBtn, btn);
   //console.log("count is 1")
-  console.log(key, cart[key].count)
-  console.log(cart[key])
+  //console.log(key, cart[key].count)
+  //console.log(cart[key])
   btn.addEventListener("click", () =>{
     clearItem(key, price, category);
     clearCartUI(key, price, category);
@@ -64,7 +78,7 @@ clearItem = (key, price, category) => {
   cart[key].price = 0;
   price = cart[key].price;
   //console.log(price)
-  console.log(cart[key])
+  //console.log(cart[key])
   const img = document.getElementById(`img-${category.toLowerCase().replaceAll(" ", "-")}`);
   img.style.border = "";
 
@@ -127,8 +141,8 @@ product = (name, price, category) => {
       count.innerText = cart[key].count;
       //console.log(`${key} count: ${cart[key].count}, total: $${cart[key].price.toFixed(2)}`);
     } else {
-      console.log(key, cart[key].count)
-      console.log(cart[key])
+      //console.log(key, cart[key].count)
+      //console.log(cart[key])
       initialItem(key, price, category);
     }
   })
@@ -169,10 +183,12 @@ product = (name, price, category) => {
 
     const itemDeets = document.getElementById("item_deets")
 
-    
-
     if(cart[key].count === 1 && !check.includes(key)){ //item goes 1st time inside cart
       //console.log(`${key}, ${cart[key].count} - 1st time inside cart`)
+      if(!check.includes(key)){
+        check.push(key)
+        //console.log(check)
+      }
       const cart_name = document.createElement("strong")
       cart_name.id = `cart_item_${key.toLowerCase().replaceAll(" ", "-")}`
       
@@ -227,11 +243,13 @@ product = (name, price, category) => {
     cart[key].price = tot_calculation;
     const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
     //console.log(`Amount: $${totalAmount}`)
+    
     document.getElementById("order_total").innerHTML = `Order Total <strong>$${totalAmount.toFixed(2)}</strong>`
 
     } else {
       if(!check.includes(key)){
         check.push(key)
+        //console.log(check)
       }
       //console.log(`${key}, ${cart[key].count} - already inside cart`)
      const quantity = document.getElementById(`quan-${key.toLowerCase().replaceAll(" ", "-")}`)
