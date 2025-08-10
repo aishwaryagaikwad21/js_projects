@@ -10,18 +10,56 @@ fetch('./data.json')
   .catch(error => console.error("Error loading JSON:", error));
 
 let cart = {}
+const check = []
+
+clearCartUI = (key, price, category) => {
+  const cart_name = document.getElementById(`cart_item_${key}`);
+  if (cart_name) cart_name.remove();
+
+  const second_row = document.getElementById(`second_row-${key}`);
+  if (second_row) second_row.remove();
+
+  const hr = document.getElementById(`hr-${key}`);
+  if (hr) hr.remove();
+
+  console.log(check)
+  const index = check.indexOf(key);
+  if (index > -1) {
+    check.splice(index, 1);
+  }
+  console.log(check)
+  //Cart container
+    const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
+    //console.log(`Total items: ${totalItems}`);
+    document.getElementById("totalItems").innerText = totalItems;
+
+    const totalAmount = Object.values(cart).reduce((sum, item) => sum + item.price, 0)
+    //console.log(`Amount: $${totalAmount}`)
+    document.getElementById("order_total").innerHTML = `Order Total <strong>$${totalAmount.toFixed(2)}</strong>`
+}
 
 initialItem = (key, price, category) => {
   let btn = document.getElementById(`btn-${category.toLowerCase().replaceAll(" ", "-")}`)
-  console.log("count is 1")
+  console.log(key, cart[key].count);
+  // Clone the button to remove all old event listeners
+  let newBtn = btn.cloneNode(true);
+  btn.parentNode.replaceChild(newBtn, btn);
+  //console.log("count is 1")
   btn.addEventListener("click", () =>{
     clearItem(key, price, category);
   })
 }
 
- clearItem = (key, price, category) => {
-  console.log(key, price, category)
+clearItem = (key, price, category) => {
+  console.log(key, cart[key].count)
+  //console.log(key, price, category)
   cart[key].count = 0;
+  console.log(key,cart[key].count)
+
+  cart[key].price = 0;
+  price = cart[key].price;
+  console.log(price)
+
   const img = document.getElementById(`img-${category.toLowerCase().replaceAll(" ", "-")}`);
   img.style.border = "";
 
@@ -30,12 +68,14 @@ initialItem = (key, price, category) => {
   newBtn.className = "btn";
   newBtn.id = `btn-${category.toLowerCase().replaceAll(" ", "-")}`;
   newBtn.innerHTML = `<img src="./assets/images/icon-add-to-cart.svg" alt="cart icon">Add to cart`
+  newBtn.addEventListener("click", () => {
+    console.log("New button clicked")
+    product(key, price, category);
+    //updateCartUI(key, price, category);
+  });
   btn.parentNode.replaceChild(newBtn, btn);
   btn.remove()
-  newBtn.addEventListener("click", () => {
-    product(key, price, category);
-  });
-
+  clearCartUI(key, price, category)
 }
 
 product = (name, price, category) => {
@@ -50,14 +90,11 @@ product = (name, price, category) => {
   }
 
   if(cart[key].count === 0){
+    console.log("Hello there")
     cart[key].count += 1;
     cart[key].price += price;
   }
 
-  //console.log(`${key} clicked ${cart[key].count} times`)
-  //console.log(`total price of ${key}: $${cart[key].price.toFixed(2)}`);
-  //console.log(cart)
-  
   let img = document.getElementById(`img-${category.toLowerCase().replaceAll(" ", "-")}`)
   img.style.border = "2px hsl(14, 86%, 42%) solid"
 
@@ -85,6 +122,7 @@ product = (name, price, category) => {
       count.innerText = cart[key].count;
       //console.log(`${key} count: ${cart[key].count}, total: $${cart[key].price.toFixed(2)}`);
     } else {
+      console.log(key, cart[key].count)
       initialItem(key, price, category);
     }
   })
@@ -103,15 +141,14 @@ product = (name, price, category) => {
   quantityControls.appendChild(increment)
 
   const oldQuantityControls = btn.querySelector(".quantityControls");
-if (oldQuantityControls) {
-  btn.removeChild(oldQuantityControls);
-}
-
+    if (oldQuantityControls) {
+      btn.removeChild(oldQuantityControls);
+    }
   btn.appendChild(quantityControls);
-
+  updateCartUI(name, price, category)
 }
 
-const check = []
+
  updateCartUI = (name,price,category) => {
     const remove_cart = document.getElementById("empty_cart")
     remove_cart.src = ""
@@ -126,8 +163,10 @@ const check = []
 
     const itemDeets = document.getElementById("item_deets")
 
+    
+
     if(cart[key].count === 1 && !check.includes(key)){ //item goes 1st time inside cart
-      
+      console.log(`${key}, ${cart[key].count} - 1st time inside cart`)
       const cart_name = document.createElement("strong")
       cart_name.id = `cart_item_${key}`
       
@@ -136,6 +175,7 @@ const check = []
 
       const second_row = document.createElement("div")
       second_row.className = "second_row"
+      second_row.id = `second_row-${key}`
 
       const quantity = document.createElement("strong")
       quantity.id = `quan-${key}`
@@ -158,7 +198,7 @@ const check = []
 
 
       const remove_button = document.createElement("button")
-      remove_button.id = "remove_btn"
+      remove_button.id = `remove_btn-${key}`
       remove_button.innerHTML = `<img src="./assets/images/icon-remove-item.svg" alt="remove item">`
       second_row.appendChild(remove_button)
 
@@ -166,19 +206,22 @@ const check = []
 
       const hr = document.createElement("hr")
       hr.className = "hr"
+      hr.id = `hr-${key}`
       itemDeets.appendChild(hr)
 
-    } else{
-      check.push(key)
-      
-      const quantity = document.getElementById(`quan-${key}`)
-      quantity.innerHTML = `${cart[key].count}x`
-      
-      const item_tot = document.getElementById(`item-tot-${key}`)
-      tot_calculation = ((cart[key].count) * Number(cart[key].unitPrice))
-     item_tot.innerHTML = `$${tot_calculation.toFixed(2)}`
+    } else {
+      if(!check.includes(key)){
+        check.push(key)
+      }
+      console.log(`${key}, ${cart[key].count} - already inside cart`)
+     const quantity = document.getElementById(`quan-${key}`)
+     const item_tot = document.getElementById(`item-tot-${key}`)
+      if(quantity && item_tot) {
+        quantity.innerHTML = `${cart[key].count}x`
+        tot_calculation = cart[key].count * Number(cart[key].unitPrice);
+        item_tot.innerHTML = `$${tot_calculation.toFixed(2)}`
+      }
     }
-
     //Cart container
     const totalItems = Object.values(cart).reduce((sum, item) => sum + item.count, 0);
     //console.log(`Total items: ${totalItems}`);
@@ -224,7 +267,7 @@ renderProducts = (data) => {
         image_wrapper.appendChild(btn)
         btn.addEventListener(("click"), ()=> {
           product(element.name, element.price,element.category)
-          updateCartUI(element.name, element.price, element.category)
+          //updateCartUI(element.name, element.price, element.category)
         })
 
         card.appendChild(image_wrapper)
