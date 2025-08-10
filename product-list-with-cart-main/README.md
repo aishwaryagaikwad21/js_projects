@@ -1,7 +1,7 @@
 # Product List with cart
 - A **Frontend Mentor** challenge where users can browse and purchase dessert items. Items can be added to or removed from a cart, with real-time updates to quantity, price, and total shopping cost.
 
-[🍰 **Live Demo**](https://dulcet-taiyaki-0f9be0.netlify.app/)
+[🍰 Live Demo ] - https://dulcet-taiyaki-0f9be0.netlify.app/
 
 ---
 
