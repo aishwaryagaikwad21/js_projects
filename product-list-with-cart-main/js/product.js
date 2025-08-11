@@ -1,3 +1,4 @@
+
 let productData = [];
 
 fetch('./data.json')
@@ -11,7 +12,7 @@ fetch('./data.json')
 let cart = {}
 const check = []
 
-clearCartUI = (key, price, category) => {
+const clearCartUI = (key, price, category) => {
   const cart_name = document.getElementById(`cart_item_${key.toLowerCase().replaceAll(" ", "-")}`);
   if (cart_name) cart_name.remove();
 
@@ -48,7 +49,7 @@ clearCartUI = (key, price, category) => {
     document.getElementById("order_total").innerHTML = `Order Total <strong>$${totalAmount.toFixed(2)}</strong>`
 }
 
-initialItem = (key, price, category) => {
+const initialItem = (key, price, category) => {
   let btn = document.getElementById(`btn-${category.toLowerCase().replaceAll(" ", "-")}`)
 
   // Clone the button to remove all old event listeners
@@ -60,7 +61,7 @@ initialItem = (key, price, category) => {
   })
 }
 
-clearItem = (key, price, category) => {
+const clearItem = (key, price, category) => {
   cart[key].count = 0;
   cart[key].price = 0;
   price = cart[key].price;
@@ -81,7 +82,7 @@ clearItem = (key, price, category) => {
   clearCartUI(key, price, category)
 }
 
-product = (name, price, category) => {
+const product = (name, price, category) => {
   const key = name;
   
   if(!cart[key]){
@@ -148,7 +149,7 @@ product = (name, price, category) => {
 }
 
 
- updateCartUI = (name,price,category) => {
+const updateCartUI = (name,price,category) => {
     const remove_cart = document.getElementById("empty_cart")
     remove_cart.src = ""
 
@@ -244,7 +245,7 @@ product = (name, price, category) => {
 }
 
 
-renderProducts = (data) => {
+const renderProducts = (data) => {
    const deserts = document.getElementById("deserts")
    deserts.innerHTML = "";
 
@@ -308,7 +309,7 @@ renderProducts = (data) => {
    });
 }
 
-final = () => {
+const final = () => {
   
   document.getElementById("confirm_btn").disabled = true;
   document.getElementById("confirm_btn").style.backgroundColor = "grey"
@@ -328,7 +329,7 @@ final = () => {
   
 }
 
-confirm = (data) => {
+const confirm = (data) => {
   const order_details = document.getElementById("order_details")
   for(let key in cart){
     if(cart[key].count !== 0){
@@ -393,7 +394,7 @@ confirm = (data) => {
 
 }
 
-newOrder = ()=>{
+const newOrder = ()=>{
   location.reload();
 }
 
