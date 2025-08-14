@@ -20,20 +20,20 @@
     <form class="form">
       
       <label for="amount">Mortgage Amount</label><br>
-      <input type="number" id="amount">
+      <input type="number" id="amount" name="amount">
       
       <div class="term_rate">
         <label for="term">Mortgage Term</label><br>
         <input type="number" name="term" id="term"><br>
 
         <label for="rate">Interest Rate</label><br>
-        <input type="number" name="rate" id="rate">
+        <input type="number" name="rate" id="rate" step="any">
       </div><br>
 
-      <label for="mortgage_type">Mortgage Type</label>
+      <label for="mortgage_type">Mortgage Type</label><br>
       
       <label for="repayment">Repayment</label>
-      <input type="radio" name="mortgage_type" value="repayment" id="repayment">
+      <input type="radio" name="mortgage_type" value="repayment" id="repayment"><br>
 
       <label for="interest">Interest Only</label>
       <input type="radio" name="mortgage_type" value="interest" id="interest"> <br>
@@ -44,6 +44,9 @@
   </div>
 
   <div class="results" id="results">
+    <img src="./assets/images/illustration-empty.svg" alt="">
+    <h3>Results shown here</h3>
+    <p>Complete the form and click "calculate repayments" to see what your monthly repayments would be.</p>
   </div>
 
 </div>
