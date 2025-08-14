@@ -45,6 +45,21 @@ function month_calculation(data){
     return formatted
 }
 
+function overtime_amount( term, monthly_amount){
+    //console.log(monthly_amount)
+    let monthAmount = parseFloat(monthly_amount.replace(/£|,/g, ""));
+    const termMonths = parseFloat(term) * 12;
+    const overtime_amount = termMonths * monthAmount;
+
+    const formatted = overtime_amount.toLocaleString("en-GB", {
+        style: "currency",
+        currency: "GBP",
+        minimumFractionDigits: 2
+    })
+
+    return formatted
+}
+
 function displayResults(data){
     //console.log(data)
 
@@ -79,5 +94,18 @@ function displayResults(data){
     const monthly_amount_tag = document.createElement("h1");
     const monthly_amount = month_calculation(data)
     console.log(`${monthly_amount}`)
+    monthly_amount_tag.innerHTML = monthly_amount;
+    calculation_card.appendChild(monthly_amount_tag);
+
+    const overtime_repayments = document.createElement("p");
+    const textNode_o_r = document.createTextNode("Total you'll repay over the term");
+    overtime_repayments.appendChild(textNode_o_r);
+    calculation_card.appendChild(overtime_repayments)
+
+    const overtime_amount_tag = document.createElement("h3");
+    const overtime_total = overtime_amount(data.term, monthly_amount)
+    console.log(overtime_total)
+    overtime_amount_tag.innerHTML = overtime_total;
+    calculation_card.appendChild(overtime_amount_tag)
 
 }

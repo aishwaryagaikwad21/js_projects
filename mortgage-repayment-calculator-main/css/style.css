@@ -67,6 +67,9 @@ body {
 .results p {
   color: hsl(203, 41%, 72%);
 }
+.results h1 {
+  color: hsl(61, 70%, 52%);
+}
 
 @media (max-width: 768px) {
   .main {
