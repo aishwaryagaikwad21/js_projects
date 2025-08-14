@@ -12,6 +12,35 @@
 <div class="main" id="main">
   
   <div class="calculator" id="calculator">
+    <div class="title">
+      <h3>Mortgage Calculator</h3>
+      <button class="clear_all">Clear All</button>
+    </div>
+
+    <form class="form">
+      
+      <label for="amount">Mortgage Amount</label><br>
+      <input type="number" id="amount">
+      
+      <div class="term_rate">
+        <label for="term">Mortgage Term</label><br>
+        <input type="number" name="term" id="term"><br>
+
+        <label for="rate">Interest Rate</label><br>
+        <input type="number" name="rate" id="rate">
+      </div><br>
+
+      <label for="mortgage_type">Mortgage Type</label>
+      
+      <label for="repayment">Repayment</label>
+      <input type="radio" name="mortgage_type" value="repayment" id="repayment">
+
+      <label for="interest">Interest Only</label>
+      <input type="radio" name="mortgage_type" value="interest" id="interest"> <br>
+      <br>
+      <button type="submit">Calculate Repayment</button>
+    </form>
+
   </div>
 
   <div class="results" id="results">
