@@ -29,8 +29,6 @@ $lime: hsl(61, 70%, 52%);
       border-radius: 4px;
 }
 
-
-
 @mixin labels{
         font-weight: 500;
         margin-bottom: 0.3rem;
@@ -48,6 +46,11 @@ $lime: hsl(61, 70%, 52%);
 body{
     background-color: $background-color;
     padding:20px;
+    display: flex;
+  justify-content: center; 
+  align-items: center;    
+  height: 100vh;          
+  margin: 0;  
 }
 
 .main {
@@ -61,7 +64,7 @@ body{
 }
 
 .calculator {
-  flex: 1 1 60%;
+  flex: 1 1 40%;
   padding: 30px;
   background-color: hsl(0, 0%, 100%);
   min-width: 300px;
@@ -110,8 +113,8 @@ body{
     }
     .repay{
       @include input_style;
-      width:250px;
-      border-color: #666;
+      width:100%;
+      border-color: #ccc;
       padding: 8px 0px 8px 12px;
     }
 
@@ -128,6 +131,7 @@ body{
   align-items: center;
   margin-bottom: 10px;
 
+
   input[type="radio"] {
     display: none; // hide default radio
   }
@@ -135,8 +139,6 @@ body{
   label {
     position: relative;
     padding-left: 30px; // space for custom radio
-    cursor: pointer;
-    user-select: none;
 
     &::before {
       content: '';
@@ -171,7 +173,7 @@ body{
 
 .input_amount{
       position: relative;
-      width: 250px;
+      width: 100%;
       border-radius: 4px;
 
       &::before {
@@ -187,11 +189,17 @@ body{
   }
 
   .term_rate{
+     display:flex;
+      flex-direction: row;
+      gap:40px;
+      margin-top: 20px;
+     
      input{
       width: 150px;
       position: relative;
       padding: 8px 0px 8px 12px; 
-      @include input_style()
+      @include input_style();
+     
     }
   }
  
@@ -201,19 +209,58 @@ body{
   padding: 30px;
   background-color: $results;
   border-left: 2px solid #ccc;
-border-bottom-left-radius: 50px;
+  border-bottom-left-radius: 50px;
   min-width: 250px;
 
   h3{
     color: hsl(0, 0%, 100%);
   }
-
   p{
     color: hsl(203, 41%, 72%);
   }
 
+}
+
+.calculation_card{
+  width:100%;
+  background-color:hsl(202, 92%, 9%);
+  border-radius: 5px;
+  border-top: 4px solid $lime;
+  p{
+    padding:20px 20px 0px 20px;
+    font-size: 13px;
+    color: hsl(203, 41%, 72%);
+  }
   h1{
-        color: hsl(61, 70%, 52%);
+    padding: 0px 0px 0px 20px;
+    margin-top: 12px;
+    color: hsl(61, 70%, 52%);
+  }
+  h3{
+    padding: 0px 0px 20px 20px;
+    margin-top:8px;
+  }
+}
+
+.calculate_repay{
+  display: inline-flex;            // align text and icon
+  align-items: center;
+  gap: 8px;                        // space between icon and text
+  padding: 10px 20px;
+  background-color: $lime;       // yellow background
+  color: $results;                     // text color
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 25px;            
+
+  .icon-calculator {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-image: url('/assets/images/icon-calculator.svg'); // replace with your icon path
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }
 

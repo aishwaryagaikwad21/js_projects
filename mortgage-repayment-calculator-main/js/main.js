@@ -63,11 +63,14 @@
 
         const info = document.createElement("p");
         info.className = "info";
-        info.textContent = "Your results are shown below based on the information you provided. To adjust the results, edit the form and click 'calculate repayments' again";
+        info.textContent = "Your results are shown below based on the information you provided. To adjust the results, edit the form and click 'calculate repayments' again.";
+        info.style.fontSize = "12px"
+        info.style.marginTop = "10px"
         parent.appendChild(info);
 
         const calculation_card = document.createElement("div");
         calculation_card.className = "calculation_card";
+        calculation_card.style.marginTop = "30px"
         parent.appendChild(calculation_card);
 
         const monthly_repayments = document.createElement("p");
@@ -77,7 +80,12 @@
         const monthly_amount_tag = document.createElement("h1");
         const monthly_amount = month_calculation(data);
         monthly_amount_tag.innerHTML = monthly_amount;
+        //monthly_amount_tag.style.marginTop = "12px"
         calculation_card.appendChild(monthly_amount_tag);
+        
+        const hr_tag = document.createElement("hr")
+        hr_tag.style.marginTop = "25px"
+        calculation_card.appendChild(hr_tag)
 
         const overtime_repayments = document.createElement("p");
         overtime_repayments.textContent = "Total you'll repay over the term";
@@ -89,6 +97,11 @@
         calculation_card.appendChild(overtime_amount_tag);
     }
 
+    let clear_all = document.querySelector('.clear_all')
+    clear_all.addEventListener('click',(e)=>{
+        window.location.reload();
+        document.querySelector('.form').reset()
+    })
     dataInput();
 })();
 

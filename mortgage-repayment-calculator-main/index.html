@@ -21,30 +21,37 @@
       
       <label for="amount">Mortgage Amount</label><br>
       <div class="input_amount">
-        <input type="input" id="amount" name="amount">
+        <input type="input" id="amount" name="amount" required>
       </div>
       
       <div class="term_rate">
-        <label for="term">Mortgage Term</label><br>
-        <input type="number" name="term" id="term"><br>
+        <div>
+          <label for="term">Mortgage Term</label><br>
+          <input type="number" name="term" id="term" required><br>
+        </div>
 
-        <label for="rate">Interest Rate</label><br>
-        <input type="number" name="rate" id="rate" step="any">
+        <div>
+          <label for="rate">Interest Rate</label><br>
+          <input type="number" name="rate" id="rate" step="any" required>
+        </div>
       </div><br>
 
       <label for="mortgage_type">Mortgage Type</label><br>
       
       <div class="repay">
-        <input type="radio" name="mortgage_type" value="repayment" id="repayment">
+        <input type="radio" name="mortgage_type" value="repayment" id="repayment" required>
         <label for="repayment" class="rep_in">Repayment</label>
       </div>
 
       <div class="repay">
-        <input type="radio" name="mortgage_type" value="interest" id="interest"> 
+        <input type="radio" name="mortgage_type" value="interest" id="interest" required> 
         <label for="interest" class="rep_in">Interest Only</label>
       </div>
       <br>
-      <button type="submit">Calculate Repayment</button>
+      <button class="calculate_repay" type="submit">
+         <span class="icon-calculator"></span>
+        Calculate Repayment
+      </button>
     </form>
 
   </div>
@@ -52,7 +59,7 @@
   <div class="results" id="results">
     <img src="./assets/images/illustration-empty.svg" alt="">
     <h3>Results shown here</h3>
-    <p>Complete the form and click "calculate repayments" to see what your monthly repayments would be.</p>
+    <p style="font-size: 12px;">Complete the form and click "calculate repayments" to see what your monthly repayments would be.</p>
   </div>
 
 </div>

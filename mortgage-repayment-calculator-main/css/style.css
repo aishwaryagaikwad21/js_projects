@@ -10,6 +10,11 @@
 body {
   background-color: hsl(202, 86%, 94%);
   padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 .main {
@@ -23,7 +28,7 @@ body {
 }
 
 .calculator {
-  flex: 1 1 60%;
+  flex: 1 1 40%;
   padding: 30px;
   background-color: hsl(0, 0%, 100%);
   min-width: 300px;
@@ -79,8 +84,8 @@ body {
   outline: none;
   color: hsl(202, 55%, 16%);
   font-weight: bold;
-  width: 250px;
-  border-color: #666;
+  width: 100%;
+  border-color: #ccc;
   padding: 8px 0px 8px 12px;
 }
 .form input[type=radio]::after {
@@ -98,8 +103,6 @@ body {
 .repay label {
   position: relative;
   padding-left: 30px;
-  cursor: pointer;
-  user-select: none;
 }
 .repay label::before {
   content: "";
@@ -124,7 +127,7 @@ body {
 
 .input_amount {
   position: relative;
-  width: 250px;
+  width: 100%;
   border-radius: 4px;
 }
 .input_amount::before {
@@ -152,6 +155,12 @@ body {
   font-weight: bold;
 }
 
+.term_rate {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin-top: 20px;
+}
 .term_rate input {
   width: 150px;
   position: relative;
@@ -178,8 +187,47 @@ body {
 .results p {
   color: hsl(203, 41%, 72%);
 }
-.results h1 {
+
+.calculation_card {
+  width: 100%;
+  background-color: hsl(202, 92%, 9%);
+  border-radius: 5px;
+  border-top: 4px solid hsl(61, 70%, 52%);
+}
+.calculation_card p {
+  padding: 20px 20px 0px 20px;
+  font-size: 13px;
+  color: hsl(203, 41%, 72%);
+}
+.calculation_card h1 {
+  padding: 0px 0px 0px 20px;
+  margin-top: 12px;
   color: hsl(61, 70%, 52%);
+}
+.calculation_card h3 {
+  padding: 0px 0px 20px 20px;
+  margin-top: 8px;
+}
+
+.calculate_repay {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: hsl(61, 70%, 52%);
+  color: hsl(202, 55%, 16%);
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 25px;
+}
+.calculate_repay .icon-calculator {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background-image: url("/assets/images/icon-calculator.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 @media (max-width: 768px) {
