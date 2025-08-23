@@ -5,13 +5,21 @@
             e.preventDefault();
             const formData = new FormData(form);
             const data = {};
+
             formData.forEach((value, key) => data[key] = value);
+            console.log(typeof(data.term))
+            if(typeof(data.amount) === 'string'){ //convert string to number
+                data.amount = Number(data.amount.replace(/,/g, ""))
+            }
+            console.log(data)
             displayResults(data);
         })
     }
 
     function month_calculation(data) {
+        //console.log(typeof(data.amount))
         const amountInput = parseFloat(data.amount);
+        console.log(amountInput)
         const amount = amountInput < 1000 ? amountInput * 1000 : amountInput;
         const term = parseFloat(data.term)
         const rate = parseFloat(data.rate)
