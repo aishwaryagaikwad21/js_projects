@@ -20,7 +20,9 @@
     <form class="form">
       
       <label for="amount">Mortgage Amount</label><br>
-      <input type="input" id="amount" name="amount">
+      <div class="input_amount">
+        <input type="input" id="amount" name="amount">
+      </div>
       
       <div class="term_rate">
         <label for="term">Mortgage Term</label><br>
@@ -32,11 +34,15 @@
 
       <label for="mortgage_type">Mortgage Type</label><br>
       
-      <label for="repayment">Repayment</label>
-      <input type="radio" name="mortgage_type" value="repayment" id="repayment"><br>
+      <div class="repay">
+        <input type="radio" name="mortgage_type" value="repayment" id="repayment">
+        <label for="repayment" class="rep_in">Repayment</label>
+      </div>
 
-      <label for="interest">Interest Only</label>
-      <input type="radio" name="mortgage_type" value="interest" id="interest"> <br>
+      <div class="repay">
+        <input type="radio" name="mortgage_type" value="interest" id="interest"> 
+        <label for="interest" class="rep_in">Interest Only</label>
+      </div>
       <br>
       <button type="submit">Calculate Repayment</button>
     </form>

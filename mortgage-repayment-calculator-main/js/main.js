@@ -6,7 +6,7 @@
             const formData = new FormData(form);
             const data = {};
 
-            formData.forEach((value, key) => data[key] = value);
+            formData.forEach((value, key) => {data[key] = value});
             console.log(typeof(data.term))
             if(typeof(data.amount) === 'string'){ //convert string to number
                 data.amount = Number(data.amount.replace(/,/g, ""))
@@ -22,6 +22,7 @@
         console.log(amountInput)
         const amount = amountInput < 1000 ? amountInput * 1000 : amountInput;
         const term = parseFloat(data.term)
+        console.log(typeof(term))
         const rate = parseFloat(data.rate)
         const mortgage_type = data.mortgage_type
 

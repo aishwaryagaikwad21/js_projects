@@ -4,6 +4,39 @@ $background-color:hsl(202, 86%, 94%);
 $font-size:16px;
 $font-primary: 'Plus Jakarta Sans', sans-serif;
 $results:hsl(202, 55%, 16%);
+$lime: hsl(61, 70%, 52%);
+
+@mixin input_style{
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      color: $results;
+      font-weight: bold;
+}
+
+@mixin place_symbol{
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      background: hsl(202, 86%, 94%);
+      color: hsl(200, 24%, 40%);
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      border-radius: 4px;
+}
+
+
+
+@mixin labels{
+        font-weight: 500;
+        margin-bottom: 0.3rem;
+        color: hsl(200, 24%, 40%);
+        font-size: 15px;
+}
 
 *{
     box-sizing: border-box;
@@ -58,11 +91,110 @@ body{
    
     gap: 1rem;
     label{
-        font-weight: 500;
-        margin-bottom: 0.3rem;
+        @include labels;
+        font-size:12px;
+    }
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* For Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+    .rep_in{
+        @include labels;
+        color: hsl(202, 55%, 16%);
+    }
+    .repay{
+      @include input_style;
+      width:250px;
+      border-color: #666;
+      padding: 8px 0px 8px 12px;
+    }
+
+    input[type=radio]{
+     
+      &::after{
+      background-color: yellow;
+      }
+    }
+}
+
+.repay {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  input[type="radio"] {
+    display: none; // hide default radio
+  }
+
+  label {
+    position: relative;
+    padding-left: 30px; // space for custom radio
+    cursor: pointer;
+    user-select: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 15px;
+      height: 15px;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      background-color: #fff;
+      transition: all 0.2s;
     }
     
+  }
+
+  input[type="radio"]:checked + label::before {
+    background-color: yellow; // selected color
+  }
+  input[type="radio"]:checked {
+    // Using sibling selector to style entire .repay
+    & + label {
+      // label is inside .repay, so we need parent styling
+      @at-root .repay:has(> input[type="radio"]:checked) {
+        background-color: #fff9c4; // light yellow background
+        border-color: $lime;
+      }
+    }
+  }
 }
+
+.input_amount{
+      position: relative;
+      width: 250px;
+      border-radius: 4px;
+
+      &::before {
+      content: "£";
+      @include place_symbol
+    }
+
+    input{
+      width: 100%;
+      padding: 8px 8px 8px 40px; /* leave space for £ */
+      @include input_style;
+    }
+  }
+
+  .term_rate{
+     input{
+      width: 150px;
+      position: relative;
+      padding: 8px 0px 8px 12px; 
+      @include input_style()
+    }
+  }
+ 
 
 .results {
   flex: 1 1 40%;
