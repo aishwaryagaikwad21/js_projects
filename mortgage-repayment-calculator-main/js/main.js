@@ -4,44 +4,45 @@
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const formData = new FormData(form);
-            const data = {};
+            const data = {}; //input form data stored in an object
 
             formData.forEach((value, key) => {data[key] = value});
-            console.log(typeof(data.term))
+
             if(typeof(data.amount) === 'string'){ //convert string to number
                 data.amount = Number(data.amount.replace(/,/g, ""))
             }
-            console.log(data)
+
             displayResults(data);
         })
     }
 
     function month_calculation(data) {
-        //console.log(typeof(data.amount))
-        const amountInput = parseFloat(data.amount);
-        console.log(amountInput)
-        const amount = amountInput < 1000 ? amountInput * 1000 : amountInput;
+        
+        const amountInput = parseFloat(data.amount); 
+        
+        const amount = amountInput;
         const term = parseFloat(data.term)
-        console.log(typeof(term))
+        
         const rate = parseFloat(data.rate)
+
         const mortgage_type = data.mortgage_type
 
         let monthlyPayment = 0;
         if (mortgage_type === "repayment") {
-            const n = term * 12;
-            const monthlyRate = (rate / 100) / 12;
-            monthlyPayment = amount * monthlyRate / (1 - Math.pow(1 + monthlyRate, -n));
-        } else if (mortgage_type === "interest") {
+            const n = term * 12;  
+            const monthlyRate = (rate / 100) / 12; //per month rate
+            monthlyPayment = amount * monthlyRate / (1 - Math.pow(1 + monthlyRate, -n)); //calculates monthly payment
+        } else if (mortgage_type === "interest") { //only interest is calculated
             monthlyPayment = amount * (rate / 100) / 12
         }
-        return monthlyPayment.toLocaleString("en-GB", {
+        return monthlyPayment.toLocaleString("en-GB", { //converts result to string 
             style: "currency",
             currency: "GBP",
             minimumFractionDigits: 2
         });
     }
 
-    function overtime_amount(term, monthly_amount) {
+    function overtime_amount(term, monthly_amount) { // total amount overtime
         let monthAmount = parseFloat(monthly_amount.replace(/£|,/g, ""));
         const termMonths = parseFloat(term) * 12;
         const overtime_amount = termMonths * monthAmount;
@@ -53,7 +54,7 @@
         });
     }
 
-    function displayResults(data) {
+    function displayResults(data) { //final results
         const parent = document.getElementById("results");
         parent.innerHTML = "";
 
@@ -68,7 +69,7 @@
         info.style.marginTop = "10px"
         parent.appendChild(info);
 
-        const calculation_card = document.createElement("div");
+        const calculation_card = document.createElement("div"); //create card where result will be displayed 
         calculation_card.className = "calculation_card";
         calculation_card.style.marginTop = "30px"
         parent.appendChild(calculation_card);
@@ -80,7 +81,6 @@
         const monthly_amount_tag = document.createElement("h1");
         const monthly_amount = month_calculation(data);
         monthly_amount_tag.innerHTML = monthly_amount;
-        //monthly_amount_tag.style.marginTop = "12px"
         calculation_card.appendChild(monthly_amount_tag);
         
         const hr_tag = document.createElement("hr")
@@ -98,7 +98,7 @@
     }
 
     let clear_all = document.querySelector('.clear_all')
-    clear_all.addEventListener('click',(e)=>{
+    clear_all.addEventListener('click',(e)=>{ //resets input fields
         window.location.reload();
         document.querySelector('.form').reset()
     })
